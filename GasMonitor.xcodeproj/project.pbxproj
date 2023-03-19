@@ -11,6 +11,7 @@
 		73826A1629C7534800F2DDB7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73826A1529C7534800F2DDB7 /* ContentView.swift */; };
 		73826A1829C7534A00F2DDB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73826A1729C7534A00F2DDB7 /* Assets.xcassets */; };
 		73826A1C29C7534A00F2DDB7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73826A1B29C7534A00F2DDB7 /* Preview Assets.xcassets */; };
+		73826A2829C754C000F2DDB7 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73826A2729C754C000F2DDB7 /* Car.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		73826A1729C7534A00F2DDB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73826A1929C7534A00F2DDB7 /* GasMonitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GasMonitor.entitlements; sourceTree = "<group>"; };
 		73826A1B29C7534A00F2DDB7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		73826A2729C754C000F2DDB7 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +54,12 @@
 		73826A1229C7534800F2DDB7 /* GasMonitor */ = {
 			isa = PBXGroup;
 			children = (
+				73826A2629C7540400F2DDB7 /* Data */,
+				73826A2529C753FF00F2DDB7 /* Services */,
+				73826A2329C753E200F2DDB7 /* Views */,
+				73826A2429C753EE00F2DDB7 /* ViewModels */,
+				73826A2229C753D800F2DDB7 /* Models */,
 				73826A1329C7534800F2DDB7 /* GasMonitorApp.swift */,
-				73826A1529C7534800F2DDB7 /* ContentView.swift */,
 				73826A1729C7534A00F2DDB7 /* Assets.xcassets */,
 				73826A1929C7534A00F2DDB7 /* GasMonitor.entitlements */,
 				73826A1A29C7534A00F2DDB7 /* Preview Content */,
@@ -67,6 +73,43 @@
 				73826A1B29C7534A00F2DDB7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		73826A2229C753D800F2DDB7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				73826A2729C754C000F2DDB7 /* Car.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		73826A2329C753E200F2DDB7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				73826A1529C7534800F2DDB7 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		73826A2429C753EE00F2DDB7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		73826A2529C753FF00F2DDB7 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		73826A2629C7540400F2DDB7 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +184,7 @@
 			files = (
 				73826A1629C7534800F2DDB7 /* ContentView.swift in Sources */,
 				73826A1429C7534800F2DDB7 /* GasMonitorApp.swift in Sources */,
+				73826A2829C754C000F2DDB7 /* Car.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
