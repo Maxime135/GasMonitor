@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     
-    @ObservedObject var model = CarModel()
+    //@ObservedObject var model = CarModel()
     //@EnvironmentObject var model: CarModel
     @State var tabIndex = 1
     
@@ -39,7 +39,7 @@ struct MainView: View {
         
             
         }
-        //.environmentObject(CarModel())
+        .environmentObject(CarModel())
     }
 }
 
