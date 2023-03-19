@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct ConsumptionView: View {
+    
+    @EnvironmentObject var model:CarModel
+
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("ConsumptionView")
     }
 }
 
 struct ConsumptionView_Previews: PreviewProvider {
     static var previews: some View {
         ConsumptionView()
+            .environmentObject(CarModel())
     }
 }

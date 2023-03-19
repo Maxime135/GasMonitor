@@ -9,20 +9,26 @@ import SwiftUI
 
 struct MainView: View {
     
-    @EnvironmentObject var model: CarModel
+    @ObservedObject var model = CarModel()
+    //@EnvironmentObject var model: CarModel
     @State var tabIndex = 1
     
     var body: some View {
         TabView(selection: $tabIndex) {
-            ScrollView{
-                Text(model.cars[1].model)
-            }
+            ConsumptionView()
             .tabItem {
                 VStack{
                     Image(systemName: "chart.bar.xaxis")
                     Text("Overview")
                 }
             }
+            AddExpenseView()
+                .tabItem {
+                    VStack{
+                        Image(systemName: "plus.circle.fill")
+                        Text("Add")
+                    }
+                }
             FleetListView()
             .tabItem {
                 VStack{
@@ -33,6 +39,7 @@ struct MainView: View {
         
             
         }
+        //.environmentObject(CarModel())
     }
 }
 
@@ -40,5 +47,6 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
             .environmentObject(CarModel())
+            
     }
 }
