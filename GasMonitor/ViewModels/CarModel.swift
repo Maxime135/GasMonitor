@@ -10,29 +10,16 @@ import Foundation
 class CarModel: ObservableObject {
     @Published var cars = [Car]()
     
-    init() {
-        let pathString = Bundle.main.path(forResource: "cars", ofType: "json") // Optional
+    init () {
+        // Create an instance of DataService and get the data
+        self.cars = DataService().getLocalData()
         
-        if let path = pathString {
-            let url = URL(fileURLWithPath: path)
-            
-            do {
-                let data = try Data(contentsOf: url)
-                
-                let decoder = JSONDecoder()
-                
-                do {
-                    let carData = try decoder.decode([Car].self, from: data)
-                    self.cars = carData
-                }
-                catch {
-                    print(error)
-                }
-            }
-            catch {
-                print(error)
-            }
-        }
+        // Set the recipes property
+        
+    }
+    
+    func editCarInfo(forId: Int) {
+        print("button")
         
     }
 }

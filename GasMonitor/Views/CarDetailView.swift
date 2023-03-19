@@ -84,6 +84,28 @@ struct CarDetailView: View {
                     }
                 }
                 
+                HStack {
+                    Spacer()
+                    //Button {
+                    //    model.editCarInfo(forId: car.id)
+                    //} label: {
+                    //    Text("Edit")
+                    //}
+                    Text("Edit")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.white)
+                        .padding(.horizontal)
+                        .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.green/*@END_MENU_TOKEN@*/)
+                        .cornerRadius(/*@START_MENU_TOKEN@*/6.0/*@END_MENU_TOKEN@*/)
+                        
+                        
+                    Spacer()
+                    
+                }
+                .padding(.top, 15.0)
+                
+                
                 
             }
             .padding(.horizontal)
