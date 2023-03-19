@@ -8,20 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		73826A1429C7534800F2DDB7 /* GasMonitorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73826A1329C7534800F2DDB7 /* GasMonitorApp.swift */; };
-		73826A1629C7534800F2DDB7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73826A1529C7534800F2DDB7 /* ContentView.swift */; };
 		73826A1829C7534A00F2DDB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73826A1729C7534A00F2DDB7 /* Assets.xcassets */; };
 		73826A1C29C7534A00F2DDB7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73826A1B29C7534A00F2DDB7 /* Preview Assets.xcassets */; };
 		73826A2829C754C000F2DDB7 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73826A2729C754C000F2DDB7 /* Car.swift */; };
+		73826A2C29C759C300F2DDB7 /* cars.json in Resources */ = {isa = PBXBuildFile; fileRef = 73826A2B29C759C300F2DDB7 /* cars.json */; };
+		73826A2E29C75C1100F2DDB7 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73826A2D29C75C1100F2DDB7 /* DataService.swift */; };
+		73826A3129C7603900F2DDB7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73826A3029C7603900F2DDB7 /* MainView.swift */; };
+		73B3808C29C7633F00A50DE3 /* FleetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B3808B29C7633F00A50DE3 /* FleetListView.swift */; };
+		73B3808E29C7635000A50DE3 /* ConsumptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B3808D29C7635000A50DE3 /* ConsumptionView.swift */; };
+		73B3809029C7646A00A50DE3 /* CarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B3808F29C7646A00A50DE3 /* CarModel.swift */; };
+		73B3809229C7656F00A50DE3 /* CarDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B3809129C7656F00A50DE3 /* CarDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		73826A1029C7534800F2DDB7 /* GasMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GasMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73826A1329C7534800F2DDB7 /* GasMonitorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasMonitorApp.swift; sourceTree = "<group>"; };
-		73826A1529C7534800F2DDB7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		73826A1729C7534A00F2DDB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73826A1929C7534A00F2DDB7 /* GasMonitor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GasMonitor.entitlements; sourceTree = "<group>"; };
 		73826A1B29C7534A00F2DDB7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		73826A2729C754C000F2DDB7 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		73826A2B29C759C300F2DDB7 /* cars.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cars.json; sourceTree = "<group>"; };
+		73826A2D29C75C1100F2DDB7 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		73826A3029C7603900F2DDB7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		73B3808B29C7633F00A50DE3 /* FleetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetListView.swift; sourceTree = "<group>"; };
+		73B3808D29C7635000A50DE3 /* ConsumptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumptionView.swift; sourceTree = "<group>"; };
+		73B3808F29C7646A00A50DE3 /* CarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
+		73B3809129C7656F00A50DE3 /* CarDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,12 +66,12 @@
 		73826A1229C7534800F2DDB7 /* GasMonitor */ = {
 			isa = PBXGroup;
 			children = (
+				73826A2F29C75F3600F2DDB7 /* Shared */,
 				73826A2629C7540400F2DDB7 /* Data */,
 				73826A2529C753FF00F2DDB7 /* Services */,
 				73826A2329C753E200F2DDB7 /* Views */,
 				73826A2429C753EE00F2DDB7 /* ViewModels */,
 				73826A2229C753D800F2DDB7 /* Models */,
-				73826A1329C7534800F2DDB7 /* GasMonitorApp.swift */,
 				73826A1729C7534A00F2DDB7 /* Assets.xcassets */,
 				73826A1929C7534A00F2DDB7 /* GasMonitor.entitlements */,
 				73826A1A29C7534A00F2DDB7 /* Preview Content */,
@@ -86,7 +98,10 @@
 		73826A2329C753E200F2DDB7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				73826A1529C7534800F2DDB7 /* ContentView.swift */,
+				73826A3029C7603900F2DDB7 /* MainView.swift */,
+				73B3808B29C7633F00A50DE3 /* FleetListView.swift */,
+				73B3809129C7656F00A50DE3 /* CarDetailView.swift */,
+				73B3808D29C7635000A50DE3 /* ConsumptionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -94,6 +109,7 @@
 		73826A2429C753EE00F2DDB7 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				73B3808F29C7646A00A50DE3 /* CarModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -101,6 +117,7 @@
 		73826A2529C753FF00F2DDB7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				73826A2D29C75C1100F2DDB7 /* DataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -108,8 +125,17 @@
 		73826A2629C7540400F2DDB7 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				73826A2B29C759C300F2DDB7 /* cars.json */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		73826A2F29C75F3600F2DDB7 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				73826A1329C7534800F2DDB7 /* GasMonitorApp.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73826A1C29C7534A00F2DDB7 /* Preview Assets.xcassets in Resources */,
+				73826A2C29C759C300F2DDB7 /* cars.json in Resources */,
 				73826A1829C7534A00F2DDB7 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -182,9 +209,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73826A1629C7534800F2DDB7 /* ContentView.swift in Sources */,
 				73826A1429C7534800F2DDB7 /* GasMonitorApp.swift in Sources */,
+				73B3809029C7646A00A50DE3 /* CarModel.swift in Sources */,
+				73B3809229C7656F00A50DE3 /* CarDetailView.swift in Sources */,
+				73B3808C29C7633F00A50DE3 /* FleetListView.swift in Sources */,
+				73B3808E29C7635000A50DE3 /* ConsumptionView.swift in Sources */,
 				73826A2829C754C000F2DDB7 /* Car.swift in Sources */,
+				73826A3129C7603900F2DDB7 /* MainView.swift in Sources */,
+				73826A2E29C75C1100F2DDB7 /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

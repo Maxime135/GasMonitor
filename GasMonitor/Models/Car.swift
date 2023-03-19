@@ -16,8 +16,8 @@ class Car: Identifiable, Decodable {
     var energy:String
     var image:String
     var milage:Int
-    var modelYear:Date
-    var fuelConsumption:String
+    var modelYear:Int
+    var fuelConsumption:Float?
     var tankCapacity:Int?
     var horsepower:Int?
     var engineSize:Float?

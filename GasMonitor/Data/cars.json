@@ -1,0 +1,25 @@
+[
+    {
+        "brand":"Renault",
+        "model":"Clio",
+        "nickname":"Sputnik",
+        "energy":"Gas",
+        "image":"sputnik",
+        "milage":25000,
+        "modelYear":2019,
+        "tankCapacity":45,
+        "horsepower":90,
+        "engineSize":0.9
+    },
+    {
+        "brand":"Alfa Romeo",
+        "model":"Giulia",
+        "energy":"Gas",
+        "image":"giulia",
+        "milage":52000,
+        "modelYear":2018,
+        "tankCapacity":65,
+        "horsepower":200,
+        "engineSize":2.0
+    }
+]
