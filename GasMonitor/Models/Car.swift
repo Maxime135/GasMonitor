@@ -8,7 +8,7 @@
 import Foundation
 
 
-class Car: Identifiable, Decodable {
+class Car: Identifiable, Decodable, Encodable {
     var id:UUID?
     var brand:String
     var model:String
@@ -23,7 +23,7 @@ class Car: Identifiable, Decodable {
     var engineSize:Float?
 }
 
-class Expense: Identifiable, Decodable {
+class Expense: Identifiable, Decodable, Encodable {
     var id:UUID?
     var car:[Car]
     var liters:Float

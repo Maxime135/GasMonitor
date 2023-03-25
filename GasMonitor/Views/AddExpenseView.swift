@@ -160,7 +160,7 @@ struct AddExpenseView: View {
             
             //Spacer()
         }
-        .ignoresSafeArea()
+        .ignoresSafeArea(.all, edges: .top)
     }
 }
 

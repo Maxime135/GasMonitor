@@ -19,7 +19,12 @@ class CarModel: ObservableObject {
     }
     
     func editCarInfo(forId: Int) {
-        print("button")
+        print("editCarInfo")
+        
+    }
+    
+    func addCar() {
+        print("addCar")
         
     }
 }

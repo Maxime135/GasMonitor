@@ -43,12 +43,27 @@ class DataService {
             catch {
                 print(error)
             }
-            
-            
         }
         catch {
             print(error)
         }
         return [Car]()
     }
+    
+    func writeData(_ totals: [Car]) -> Void {
+        do {
+            let pathString = Bundle.main.path(forResource: "cars", ofType: "json")
+            let fileURL = URL(fileURLWithPath: pathString!)
+            //let fileURL = try FileManager.default
+            //    .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            //    .appendingPathComponent("pastData.json")
+            
+            try JSONEncoder()
+                .encode(totals)
+                .write(to: fileURL)
+        } catch {
+            print("error writing data")
+        }
+    }
+    
 }

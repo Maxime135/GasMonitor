@@ -16,11 +16,8 @@ struct FleetListView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                Text("Car Fleet")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .padding(.leading)
                 
+
                 ScrollView {
                     LazyVStack(alignment: .leading) {
                         ForEach(model.cars) { element in
@@ -65,8 +62,32 @@ struct FleetListView: View {
                     }
                     .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
                 }
+                
+                NavigationLink {
+                    NewCarView()
+                } label: {
+                    ZStack {
+                        Rectangle()
+                            .foregroundColor(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/)
+                            .frame(height: 50.0)
+                            .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                            .padding(.all)
+                        Text("Add a new car")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.white)
+                    }
+                }
+
+                
+                .padding(/*@START_MENU_TOKEN@*/[.leading, .bottom, .trailing]/*@END_MENU_TOKEN@*/)
+                
+                .navigationTitle(Text("Car Fleet"))
+                .navigationBarTitleDisplayMode(.large)
+                
             }
         }
+        
         
     }
 }

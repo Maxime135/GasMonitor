@@ -19,6 +19,7 @@
 		73B3808E29C7635000A50DE3 /* ConsumptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B3808D29C7635000A50DE3 /* ConsumptionView.swift */; };
 		73B3809029C7646A00A50DE3 /* CarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B3808F29C7646A00A50DE3 /* CarModel.swift */; };
 		73B3809229C7656F00A50DE3 /* CarDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B3809129C7656F00A50DE3 /* CarDetailView.swift */; };
+		73FF53BB29CF63F3000871B1 /* NewCarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FF53BA29CF63F3000871B1 /* NewCarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		73B3808D29C7635000A50DE3 /* ConsumptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumptionView.swift; sourceTree = "<group>"; };
 		73B3808F29C7646A00A50DE3 /* CarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
 		73B3809129C7656F00A50DE3 /* CarDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailView.swift; sourceTree = "<group>"; };
+		73FF53BA29CF63F3000871B1 /* NewCarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				73B3809129C7656F00A50DE3 /* CarDetailView.swift */,
 				73B3808D29C7635000A50DE3 /* ConsumptionView.swift */,
 				73411BAD29C7A13C00A804C3 /* AddExpenseView.swift */,
+				73FF53BA29CF63F3000871B1 /* NewCarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 			files = (
 				73411BAE29C7A13C00A804C3 /* AddExpenseView.swift in Sources */,
 				73826A1429C7534800F2DDB7 /* GasMonitorApp.swift in Sources */,
+				73FF53BB29CF63F3000871B1 /* NewCarView.swift in Sources */,
 				73B3809029C7646A00A50DE3 /* CarModel.swift in Sources */,
 				73B3809229C7656F00A50DE3 /* CarDetailView.swift in Sources */,
 				73B3808C29C7633F00A50DE3 /* FleetListView.swift in Sources */,
