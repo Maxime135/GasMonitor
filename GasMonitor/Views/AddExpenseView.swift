@@ -35,10 +35,12 @@ struct AddExpenseView: View {
             ScrollView {
                 ZStack {
                     Rectangle()
-                        .foregroundColor(Color(red: 0.0, green: 0.4, blue: 1.0, opacity: 0.1))
-                        .border(/*@START_MENU_TOKEN@*/Color(hue: 0.629, saturation: 0.816, brightness: 0.777)/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                        
+                        .foregroundColor(Color(red: 0.0, green: 0.4, blue: 1.0, opacity: 0.3))
+                        //.border(/*@START_MENU_TOKEN@*/Color(hue: 0.629, saturation: 0.816, brightness: 0.777)/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                         .blur(radius: /*@START_MENU_TOKEN@*/3.0/*@END_MENU_TOKEN@*/)
                         .cornerRadius(/*@START_MENU_TOKEN@*/15.0/*@END_MENU_TOKEN@*/)
+                        .padding(.horizontal)
                         
                     VStack(alignment: .center) {
                         HStack {
@@ -51,8 +53,8 @@ struct AddExpenseView: View {
                         HStack(alignment: .center) {
                             TextField("", value: $price, formatter: NumberFormatter())
                                 //.padding(/*@START_MENU_TOKEN@*/.horizontal, 100.0/*@END_MENU_TOKEN@*/)
-                                .padding([.top, .leading, .bottom])
-                                .frame(width: 100.0, height: 100.0)
+                                //.padding([.top, .leading, .bottom])
+                                //.frame(height: 100.0)
                                 .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
                                 .scaledToFit()
                                 .fontWeight(/*@START_MENU_TOKEN@*/.heavy/*@END_MENU_TOKEN@*/)
@@ -65,8 +67,8 @@ struct AddExpenseView: View {
                     }
                     .padding(.all)
                 }
-                .padding(.horizontal)
-                .frame(height: 175.0)
+                .padding(.all)
+                .frame(height: 125.0)
                 
                 Divider()
                 
@@ -81,6 +83,7 @@ struct AddExpenseView: View {
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
+                    
                     
                 }
                 .padding(.horizontal)
@@ -110,9 +113,11 @@ struct AddExpenseView: View {
                     Spacer()
                     TextField("", value: $fuelQuantity, formatter: NumberFormatter())
                         .frame(width: 50.0)
-                        .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
-                        .fontWeight(.semibold)
+                        .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
                         .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                        
+                    
                     
                 }
                 .padding(.horizontal)
@@ -123,14 +128,33 @@ struct AddExpenseView: View {
                     Spacer()
                     TextField("", value: $drivenDistance, formatter: NumberFormatter())
                         .frame(width: 50.0)
-                        .font(/*@START_MENU_TOKEN@*/.title2/*@END_MENU_TOKEN@*/)
-                        .fontWeight(.semibold)
+                        .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
                         .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     
                 }
                 .padding(.horizontal)
                 
             }
+            
+            Button {
+                //
+            } label: {
+                //Image(systemName: "checkmark.circle.fill")
+                ZStack {
+                    Rectangle()
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.green/*@END_MENU_TOKEN@*/)
+                        .frame(height: 50.0)
+                        .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                        .padding(.all)
+                    Text("Add")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.white)
+                }
+            }
+            .padding(/*@START_MENU_TOKEN@*/[.leading, .bottom, .trailing]/*@END_MENU_TOKEN@*/)
+
             
             
             
