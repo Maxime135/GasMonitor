@@ -78,9 +78,7 @@ struct FleetListView: View {
                             .foregroundColor(Color.white)
                     }
                 }
-
-                
-                .padding(/*@START_MENU_TOKEN@*/[.leading, .bottom, .trailing]/*@END_MENU_TOKEN@*/)
+                .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
                 
                 .navigationTitle(Text("Car Fleet"))
                 .navigationBarTitleDisplayMode(.large)

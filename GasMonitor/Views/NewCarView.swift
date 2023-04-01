@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct NewCarView: View {
     
@@ -19,8 +20,8 @@ struct NewCarView: View {
     @State var milage:Int = 0
     @State var modelYear:Int = 0
     @State var tankCapacity:Int = 0
-    @State var horsepower:Int?
-    @State var engineSize:Float?
+    @State var horsepower:Int = 0
+    @State var engineSize:Float = 0
     
     
     @State var selectedCar:Int = 0
@@ -31,143 +32,179 @@ struct NewCarView: View {
     
     @State var price:Float = 20.0
     
+//    Variables related to the selected image:
+    @State private var selectedItem: PhotosPickerItem? = nil
+    @State private var selectedImageData: Data? = nil
+    
     var body: some View {
         
         VStack {
             ScrollView {
                 
-                HStack {
-                    Text("Brand")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                    Spacer()
-                    TextField("enter the brand", text: $brand)
-                        .frame(width: 125)
-                        .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                }
-                .padding(.horizontal)
+                if let selectedImageData,
+                    let uiImage = UIImage(data: selectedImageData) {
+                        Image(uiImage: uiImage)
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 250, height: 250)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 300, height: 300)
+                            .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                            .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                            .padding(.bottom)
+                        }
                 
-                HStack {
-                    Text("Model")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                    Spacer()
-                    TextField("enter the model", text: $carModel)
-                        .frame(width: 125)
-                        .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                }
-                .padding(.horizontal)
-                
-                HStack {
-                    Text("Nickname")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                    Spacer()
-                    TextField("optional", text: $nickname)
-                        .frame(width: 125)
-                        .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                }
-                .padding(.horizontal)
-                
-                HStack {
-                    Text("Energy")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                    Spacer()
-                    Picker("select fuel", selection: $energy) {
-                        Text("Gas").multilineTextAlignment(.leading).tag("gas")
-                        Text("Diesel").tag("diesel")
-                        Text("Flexfuel").tag("flexfuel")
-                        Text("GPL").tag("gpl")
-                        Text("Electric").tag("electric")
+                Group {
+                    HStack {
+                        Text("Brand")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        Spacer()
+                        TextField("enter the brand", text: $brand)
+                            .frame(width: 125)
+                            .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     }
-                    .frame(width: 200.0)
-                    .pickerStyle(MenuPickerStyle())
+                    .padding(.horizontal)
                     
+                    HStack {
+                        Text("Model")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        Spacer()
+                        TextField("enter the model", text: $carModel)
+                            .frame(width: 125)
+                            .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    }
+                    .padding(.horizontal)
+                    
+                    HStack {
+                        Text("Nickname")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        Spacer()
+                        TextField("optional", text: $nickname)
+                            .frame(width: 125)
+                            .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    }
+                    .padding(.horizontal)
+                    
+                    HStack {
+                        Text("Energy")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        Spacer()
+                        Picker("select fuel", selection: $energy) {
+                            Text("Gas").multilineTextAlignment(.leading).tag("gas")
+                            Text("Diesel").tag("diesel")
+                            Text("Flexfuel").tag("flexfuel")
+                            Text("GPL").tag("gpl")
+                            Text("Electric").tag("electric")
+                        }
+                        .frame(width: 210.0)
+                        .pickerStyle(MenuPickerStyle())
+                        
+                    }
+                    .padding(.horizontal)
+                    
+                    HStack {
+                        Text("Milage (km)")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        Spacer()
+                        TextField("", value: $milage, formatter: NumberFormatter())
+                            .frame(width: 125.0)
+                            .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
+                            .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    }
+                    .padding(.horizontal)
+                    
+                    HStack {
+                        Text("Model Year")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        Spacer()
+                        TextField("", value: $modelYear, formatter: NumberFormatter())
+                            .frame(width: 125.0)
+                            .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
+                            .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    }
+                    .padding(.horizontal)
+                    
+                    HStack {
+                        Text("Fuel Tank Capacity (L)")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        Spacer()
+                        TextField("", value: $tankCapacity, formatter: NumberFormatter())
+                            .frame(width: 125.0)
+                            .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
+                            .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    }
+                    .padding(.horizontal)
+                    
+                    HStack {
+                        Text("Engine Power (HP)")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        Spacer()
+                        TextField("optional", value: $horsepower, formatter: NumberFormatter())
+                            .frame(width: 125.0)
+                            .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
+                            .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    }
+                    .padding(.horizontal)
+                    
+                    HStack {
+                        Text("Engine Size (L)")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        Spacer()
+                        TextField("optional", value: $engineSize, formatter: NumberFormatter())
+                            .frame(width: 125.0)
+                            .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
+                            .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    }
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
                 
-                HStack {
-                    Text("Milage (km)")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                    Spacer()
-                    TextField("", value: $milage, formatter: NumberFormatter())
-                        .frame(width: 125.0)
-                        .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
-                        .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                }
-                .padding(.horizontal)
-                
-                HStack {
-                    Text("Model Year")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                    Spacer()
-                    TextField("", value: $modelYear, formatter: NumberFormatter())
-                        .frame(width: 125.0)
-                        .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
-                        .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                }
-                .padding(.horizontal)
-                
-                HStack {
-                    Text("Fuel Tank Capacity (L)")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                    Spacer()
-                    TextField("", value: $tankCapacity, formatter: NumberFormatter())
-                        .frame(width: 125.0)
-                        .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
-                        .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                }
-                .padding(.horizontal)
-                
-                HStack {
-                    Text("Engine Power (HP)")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                    Spacer()
-                    TextField("optional", value: $horsepower, formatter: NumberFormatter())
-                        .frame(width: 125.0)
-                        .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
-                        .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                }
-                .padding(.horizontal)
-                
-                HStack {
-                    Text("Engine Size (L)")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                    Spacer()
-                    TextField("optional", value: $engineSize, formatter: NumberFormatter())
-                        .frame(width: 125.0)
-                        .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
-                        .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                }
-                .padding(.horizontal)
                 
                 HStack {
                     Text("Picture")
                         .font(.title2)
                         .fontWeight(.semibold)
                     Spacer()
-                    Button {
-                        //
-                    } label: {
-                        Text("Add a picture")
-                            .foregroundColor(Color.blue)
-                            .multilineTextAlignment(.leading)
-                            .frame(width: 150.0)
-                    }
+                    
+                    PhotosPicker(
+                            selection: $selectedItem,
+                            matching: .images,
+                            photoLibrary: .shared()) {
+                                Text("Select a photo")
+                            }
+                            .onChange(of: selectedItem) { newItem in
+                                            Task {
+                                                // Retrieve selected asset in the form of Data
+                                                if let data = try? await newItem?.loadTransferable(type: Data.self) {
+                                                    selectedImageData = data
+                                                }
+                                            }
+                                        }
+//                    Button {
+//                        //
+//                    } label: {
+//                        Text("Add a picture")
+//                            .foregroundColor(Color.blue)
+//                            .multilineTextAlignment(.leading)
+//                            .frame(width: 150.0)
+//                    }
 
                 }
                 .padding(.horizontal)
@@ -190,13 +227,13 @@ struct NewCarView: View {
                         .foregroundColor(Color.white)
                 }
             }
-            .padding(/*@START_MENU_TOKEN@*/[.leading, .bottom, .trailing]/*@END_MENU_TOKEN@*/)
 
             
             
             
             //Spacer()
         }
+        .padding(.horizontal)
     }
 }
 

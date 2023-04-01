@@ -85,35 +85,31 @@ struct CarDetailView: View {
                         }
                     }
                     
-                    
-                    
-                    
-
-                    
-                    
+                    Button {
+                        //
+                    } label: {
+                        //Image(systemName: "checkmark.circle.fill")
+                        ZStack {
+                            Rectangle()
+                                .foregroundColor(/*@START_MENU_TOKEN@*/.green/*@END_MENU_TOKEN@*/)
+                                .frame(height: 50.0)
+                                .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                                .padding(.horizontal)
+                            Text("Edit")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .foregroundColor(Color.white)
+                        }
+                    }
+                    .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
                     
                 }
                 .padding(.horizontal)
             }
             
-            Button {
-                //
-            } label: {
-                //Image(systemName: "checkmark.circle.fill")
-                ZStack {
-                    Rectangle()
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.green/*@END_MENU_TOKEN@*/)
-                        .frame(height: 50.0)
-                        .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                        .padding(.horizontal)
-                    Text("Edit")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.white)
-                }
-            }
-            .padding(/*@START_MENU_TOKEN@*/[.leading, .bottom, .trailing]/*@END_MENU_TOKEN@*/)
+            
         }
+        .navigationBarTitle(Text(car.nickname ?? ""), displayMode: .inline)
         
         
 
