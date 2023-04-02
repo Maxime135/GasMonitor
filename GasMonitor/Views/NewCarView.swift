@@ -18,6 +18,7 @@ struct NewCarView: View {
     @State var energy:String = ""
     @State var image:String = ""
     @State var milage:Int = 0
+    @State var fuelConsumption:Float?
     @State var modelYear:Int = 0
     @State var tankCapacity:Int = 0
     @State var horsepower:Int = 0
@@ -49,7 +50,7 @@ struct NewCarView: View {
 //                            .frame(width: 250, height: 250)
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 300, height: 300)
+//                            .frame(width: 300, height: 300)
                             .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
                             .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                             .padding(.bottom)
@@ -212,7 +213,8 @@ struct NewCarView: View {
             }
             
             Button {
-                //
+                model.addCar(brand: brand, model: carModel, nickname: nickname, energy: energy, image: "guilia", milage: milage, modelYear: modelYear, fuelConsumption: fuelConsumption, tankCapacity: tankCapacity, horsepower: horsepower, engineSize: engineSize)
+                
             } label: {
                 //Image(systemName: "checkmark.circle.fill")
                 ZStack {

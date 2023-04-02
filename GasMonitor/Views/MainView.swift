@@ -11,7 +11,7 @@ struct MainView: View {
     
     //@ObservedObject var model = CarModel()
     //@EnvironmentObject var model: CarModel
-    @State var tabIndex = 1
+    @State var tabIndex = 3
     
     var body: some View {
         TabView(selection: $tabIndex) {
@@ -36,6 +36,7 @@ struct MainView: View {
                     Text("Fleet")
                 }
             }
+            
         
             
         }

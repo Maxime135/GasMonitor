@@ -13,9 +13,11 @@ struct AddExpenseView: View {
     @EnvironmentObject var model:CarModel
     @State var selectedCar:Int = 0
     @State var selectedFuelType:Int = 1
+    @State var selectedFuel:String = "E95-E10"
     @State var fuelPrice:Float = 1.0
     @State var drivenDistance:Float = 500.0
     @State var fuelQuantity:Float = 10.0
+    @State var place:String?
     
     @State var price:Float = 20.0
     
@@ -93,13 +95,13 @@ struct AddExpenseView: View {
                         .font(.title2)
                         .fontWeight(.semibold)
                     Spacer()
-                    Picker("select fuel", selection: $selectedFuelType) {
-                        Text("E85").multilineTextAlignment(.leading).tag(1)
-                        Text("E95").tag(2)
-                        Text("E95-E10").tag(3)
-                        Text("E98").tag(4)
-                        Text("Diesel").tag(5)
-                        Text("Electricity").tag(6)
+                    Picker("select fuel", selection: $selectedFuel) {
+                        Text("E85").multilineTextAlignment(.leading).tag("E85")
+                        Text("E95").tag("E95")
+                        Text("E95-E10").tag("E95-E10")
+                        Text("E98").tag("E98")
+                        Text("Diesel").tag("Diesel")
+                        Text("Electricity").tag("Electricity")
                     }
                     .pickerStyle(MenuPickerStyle())
                     
@@ -122,7 +124,7 @@ struct AddExpenseView: View {
                 }
                 .padding(.horizontal)
                 HStack {
-                    Text("Distance (km)")
+                    Text("Car milage (km)")
                         .font(.title2)
                         .fontWeight(.semibold)
                     Spacer()
@@ -136,7 +138,7 @@ struct AddExpenseView: View {
                 .padding(.horizontal)
                 
                 Button {
-                    //
+                    model.addExpense(car: model.cars[selectedCar], liters: fuelQuantity, price: fuelPrice, traveledDistance: drivenDistance, energy: selectedFuel, place: place)
                 } label: {
                     //Image(systemName: "checkmark.circle.fill")
                     ZStack {

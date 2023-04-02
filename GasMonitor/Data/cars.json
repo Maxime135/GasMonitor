@@ -9,7 +9,23 @@
         "modelYear":2019,
         "tankCapacity":45,
         "horsepower":90,
-        "engineSize":0.9
+        "engineSize":0.9,
+        "expenses" : [
+            {
+                "liters":38.24,
+                "price":70.97,
+                "traveledDistance":24883,
+                "energy":"E95-10",
+                "place":"Intermarché, Clermont-Ferrand",
+            },
+            {
+                "liters":23.21,
+                "price":44.01,
+                "traveledDistance":24364,
+                "energy":"E95-10",
+                "place":"Total Access, Orgeval",
+            }
+        ]
     },
     {
         "brand":"Alfa Romeo",
@@ -20,6 +36,7 @@
         "modelYear":2018,
         "tankCapacity":65,
         "horsepower":200,
-        "engineSize":2.0
+        "engineSize":2.0,
+        
     }
 ]

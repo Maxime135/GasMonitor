@@ -33,20 +33,24 @@ struct FleetListView: View {
                                     VStack(alignment: .leading) {
                                         
                                         HStack {
-                                            Text(element.brand)
-                                                .fontWeight(.bold)
-                                            .foregroundColor(Color.black)
+//                                            Text(element.brand)
+//                                                .fontWeight(.bold)
+//                                            .foregroundColor(Color.black)
                                             Text(element.model)
                                                 .fontWeight(.bold)
                                                 .foregroundColor(Color.black)
+                                            Spacer()
+                                            Text(element.nickname ?? "")
+                                                .foregroundColor(Color.gray)
                                         }
                                         
                                         
                                         
                                             
                                         HStack {
-                                            Text(element.nickname ?? "")
+                                            Text(element.brand)
                                                 .foregroundColor(.gray)
+                                                .fontWeight(.bold)
                                             Spacer()
                                             Text(String(element.milage)+" km")
                                                 .foregroundColor(.green)
@@ -56,7 +60,16 @@ struct FleetListView: View {
                                     }
                                     
                                 }
+//                                .swipeActions {
+//                                    Button("Delete") {
+//                                        print("Awesome!")
+//                                    }
+//                                    .tint(.red)
+//                                }
+                                
+                                
                             })
+                            
 
                         }
                     }
@@ -84,6 +97,7 @@ struct FleetListView: View {
                 .navigationBarTitleDisplayMode(.large)
                 
             }
+            
         }
         
         
