@@ -85,16 +85,15 @@ struct CarDetailView: View {
                         }
                     }
                     
-                    Button {
-                        //
+                    NavigationLink {
+                        editCarView(car:car)
                     } label: {
-                        //Image(systemName: "checkmark.circle.fill")
                         ZStack {
                             Rectangle()
-                                .foregroundColor(/*@START_MENU_TOKEN@*/.green/*@END_MENU_TOKEN@*/)
+                                .foregroundColor(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/)
                                 .frame(height: 50.0)
                                 .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                                .padding(.horizontal)
+                                .padding(.all)
                             Text("Edit")
                                 .font(.title2)
                                 .fontWeight(.bold)
@@ -102,6 +101,9 @@ struct CarDetailView: View {
                         }
                     }
                     .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
+                    
+                    .navigationTitle(Text("Car Fleet"))
+                    .navigationBarTitleDisplayMode(.large)
                     
                 }
                 .padding(.horizontal)
