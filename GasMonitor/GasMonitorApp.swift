@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct GasMonitorApp: App {
+    @StateObject var dataController = DataController.shared
+    
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
 }

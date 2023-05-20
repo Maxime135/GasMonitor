@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct MainView: View {
-    
     //@ObservedObject var model = CarModel()
     //@EnvironmentObject var model: CarModel
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(sortDescriptors:[SortDescriptor(\.brand)]) var car:FetchedResults<Car>
+    
     @State var tabIndex = 3
     
     var body: some View {
@@ -40,14 +43,14 @@ struct MainView: View {
         
             
         }
-        .environmentObject(CarModel())
+//        .environmentObject(CarModel())
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-            .environmentObject(CarModel())
+//            .environmentObject(CarModel())
             
     }
 }

@@ -9,8 +9,10 @@ import SwiftUI
 
 struct FleetListView: View {
     
-    @EnvironmentObject var model: CarModel
+//    @EnvironmentObject var model: CarModel
     
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(sortDescriptors:[SortDescriptor(\.brand)]) var car:FetchedResults<Car>
     
     
     var body: some View {
@@ -20,15 +22,15 @@ struct FleetListView: View {
 
                 ScrollView {
                     LazyVStack(alignment: .leading) {
-                        ForEach(model.cars) { element in
+                        ForEach(car) { element in
                             NavigationLink(destination: CarDetailView(car: element), label: {
                                 HStack(spacing: 20.0) {
-                                    Image(element.image)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 50.0, height: 50.0, alignment: .center)
-                                        .clipped()
-                                        .cornerRadius(5.0)
+//                                    Image(element.image!)
+//                                        .resizable()
+//                                        .scaledToFill()
+//                                        .frame(width: 50.0, height: 50.0, alignment: .center)
+//                                        .clipped()
+//                                        .cornerRadius(5.0)
                                     
                                     VStack(alignment: .leading) {
                                         
@@ -36,7 +38,7 @@ struct FleetListView: View {
 //                                            Text(element.brand)
 //                                                .fontWeight(.bold)
 //                                            .foregroundColor(Color.black)
-                                            Text(element.model)
+                                            Text(element.model!)
                                                 .fontWeight(.bold)
                                                 .foregroundColor(Color.black)
                                             Spacer()
@@ -48,7 +50,7 @@ struct FleetListView: View {
                                         
                                             
                                         HStack {
-                                            Text(element.brand)
+                                            Text(element.brand!)
                                                 .foregroundColor(.gray)
                                                 .fontWeight(.bold)
                                             Spacer()
@@ -107,6 +109,6 @@ struct FleetListView: View {
 struct FleetListView_Previews: PreviewProvider {
     static var previews: some View {
         FleetListView()
-            .environmentObject(CarModel())
+//            .environmentObject(CarModel())
     }
 }

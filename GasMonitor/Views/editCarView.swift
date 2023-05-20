@@ -9,19 +9,24 @@ import SwiftUI
 import _PhotosUI_SwiftUI
 
 struct editCarView: View {
-    @EnvironmentObject var model:CarModel
-    var car:Car
+//    @EnvironmentObject var model:CarModel
+//    var car:Car
+    
+    @Environment(\.dismiss) var dismiss
+
+    @Environment(\.managedObjectContext) var managedObjectContext
+    var car: FetchedResults<Car>.Element
     
     @State var brand:String = ""
     @State var carModel:String = ""
     @State var nickname:String = ""
     @State var energy:String = ""
     @State var image:String = ""
-    @State var milage:Int = 0
+    @State var milage:Int64 = 0
     @State var fuelConsumption:Float?
-    @State var modelYear:Int = 0
-    @State var tankCapacity:Int = 0
-    @State var horsepower:Int = 0
+    @State var modelYear:Int64 = 0
+    @State var tankCapacity:Int64 = 0
+    @State var horsepower:Int64 = 0
     @State var engineSize:Float = 0
     
     
@@ -213,10 +218,12 @@ struct editCarView: View {
                 }
                 .padding(.horizontal)
                 
+                
             }
             
             Button {
-                //
+                DataController.shared.editCar(car: car, brand: brand, model:carModel, energy:energy, milage:milage, modelYear:modelYear, tankCapacity:tankCapacity, horsepower:horsepower, engineSize:engineSize, nickname:nickname, context:managedObjectContext)
+                dismiss()
                 
             } label: {
                 //Image(systemName: "checkmark.circle.fill")
@@ -232,6 +239,18 @@ struct editCarView: View {
                         .foregroundColor(Color.white)
                 }
             }
+            .onAppear {
+                brand = car.brand!
+                carModel = car.model!
+                nickname = car.nickname ?? ""
+                energy = car.energy!
+                milage = car.milage
+                fuelConsumption = car.fuelConsumption
+                modelYear = car.modelYear
+                tankCapacity = car.tankCapacity
+                horsepower = car.horsepower
+                engineSize = car.engineSize
+            }
 
             
             
@@ -241,10 +260,10 @@ struct editCarView: View {
         .padding(.horizontal)
     }
 }
-
-struct editCarView_Previews: PreviewProvider {
-    static var previews: some View {
-        let model = CarModel()
-        editCarView(car: model.cars[0])
-    }
-}
+//
+//struct editCarView_Previews: PreviewProvider {
+//    static var previews: some View {
+////        let model = CarModel()
+//        editCarView()
+//    }
+//}

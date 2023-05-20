@@ -10,19 +10,42 @@ import MapKit
 
 struct AddExpenseView: View {
     
-    @EnvironmentObject var model:CarModel
-    @State var selectedCar:Int = 0
+//    @EnvironmentObject var model:CarModel
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.dismiss) var dismiss
+
+//    @State private var cars:FetchedResults<Car>
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Car.brand, ascending: true)], animation: .default)
+    var cars: FetchedResults<Car>
+      
+    @State var selectedCar: Car?
+
+    
+//    @State var selectedCar:Int = 0
     @State var selectedFuelType:Int = 1
     @State var selectedFuel:String = "E95-E10"
-    @State var fuelPrice:Float = 1.0
-    @State var drivenDistance:Float = 500.0
-    @State var fuelQuantity:Float = 10.0
-    @State var place:String?
+    @State var fuelPrice:Double = 1.0
+    @State var drivenDistance:Int64 = 500
+    @State var fuelQuantity:Double = 10.0
+    @State var place:String? = "Orgeval"
     
-    @State var price:Float = 20.0
+    @State var price:Double = 20.0
     
     @State private var region: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 40.75773, longitude: -73.985708), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
     
+    
+//    init(moc: NSManagedObjectContext) {
+//        let fetchRequest: NSFetchRequest<Car> = Car.fetchRequest()
+//        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Car.brand, ascending: true)]
+//        fetchRequest.predicate = NSPredicate(value: true)
+//        self._cars = FetchRequest(fetchRequest: fetchRequest)
+//        do {
+//            let firstCar = try moc.fetch(fetchRequest)
+//            self._selection = State(initialValue: firstCar[0])
+//        } catch {
+//            fatalError("Uh, fetch problem...")
+//        }
+//    }
     
     
     var body: some View {
@@ -80,8 +103,11 @@ struct AddExpenseView: View {
                         .fontWeight(.semibold)
                     Spacer()
                     Picker("select car", selection: $selectedCar) {
-                        ForEach(model.cars) { element in
-                            Text(element.model).tag(element.id)
+//                        ForEach(cars, id: \.self) { (element: Car) in
+//                            Text(element.model!).tag(element)
+//                        }
+                        ForEach(cars) { element in
+                            Text(element.model!).tag(Optional(element))
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
@@ -96,7 +122,7 @@ struct AddExpenseView: View {
                         .fontWeight(.semibold)
                     Spacer()
                     Picker("select fuel", selection: $selectedFuel) {
-                        Text("E85").multilineTextAlignment(.leading).tag("E85")
+                        Text("E85").tag("E85")
                         Text("E95").tag("E95")
                         Text("E95-E10").tag("E95-E10")
                         Text("E98").tag("E98")
@@ -124,7 +150,7 @@ struct AddExpenseView: View {
                 }
                 .padding(.horizontal)
                 HStack {
-                    Text("Car milage (km)")
+                    Text("Driven distance (km)")
                         .font(.title2)
                         .fontWeight(.semibold)
                     Spacer()
@@ -138,7 +164,14 @@ struct AddExpenseView: View {
                 .padding(.horizontal)
                 
                 Button {
-                    model.addExpense(car: model.cars[selectedCar], liters: fuelQuantity, price: fuelPrice, traveledDistance: drivenDistance, energy: selectedFuel, place: place)
+//                    model.addExpense(car: model.cars[selectedCar], liters: fuelQuantity, price: fuelPrice, traveledDistance: drivenDistance, energy: selectedFuel, place: place)
+                    
+//                    let car:Car = managedObjectContext.objectWithID(selectedCar) as! Car
+                    print("selected fuel: \(selectedFuel)")
+                    print("selected car: \(selectedCar!.model)")
+                    
+                    DataController.shared.addExpense(car: selectedCar!, liters: fuelQuantity, price: price, traveledDistance: drivenDistance, energy: selectedFuel, place: place!, date: Date(), context: managedObjectContext)
+                    dismiss()
                 } label: {
                     //Image(systemName: "checkmark.circle.fill")
                     ZStack {
@@ -166,11 +199,14 @@ struct AddExpenseView: View {
         }
         .ignoresSafeArea(.all, edges: .top)
     }
+    
+    
+    
 }
 
 struct AddExpenseView_Previews: PreviewProvider {
     static var previews: some View {
         AddExpenseView()
-            .environmentObject(CarModel())
+//            .environmentObject(CarModel())
     }
 }

@@ -9,22 +9,25 @@ import SwiftUI
 
 struct CarDetailView: View {
     
-    @EnvironmentObject var model:CarModel
-    var car:Car
+//    @EnvironmentObject var model:CarModel
+//    var car:Car
+    @Environment(\.managedObjectContext) var managedObjectContext
+    var car: FetchedResults<Car>.Element
+    
     
     var body: some View {
         VStack {
             ScrollView {
                 VStack{
-                    Image(car.image)
-                        .resizable()
-                        .scaledToFill()
-                        .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                        
-                        
+//                    Image(car.image)
+//                        .resizable()
+//                        .scaledToFill()
+//                        .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+//                        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+
+
                     HStack {
-                        Text(car.model)
+                        Text(car.model!)
                             .font(.largeTitle)
                             .fontWeight(.bold)
                         Spacer()
@@ -32,24 +35,24 @@ struct CarDetailView: View {
                             .foregroundColor(.gray)
                     }
                     .padding([.top, .leading, .trailing])
-                    
+
                     Divider()
-                        
+
                     Group {
                         HStack {
                             Text("Brand :")
                             Spacer()
-                            Text(car.brand)
+                            Text(car.brand!)
                         }
                         HStack {
                             Text("Model :")
                             Spacer()
-                            Text(car.model)
+                            Text(car.model!)
                         }
                         HStack {
                             Text("Energy :")
                             Spacer()
-                            Text(car.energy)
+                            Text(car.energy!)
                         }
                         HStack {
                             Text("Milage (km) :")
@@ -83,8 +86,16 @@ struct CarDetailView: View {
                             Spacer()
                             Text(String(car.engineSize ?? 0))
                         }
+//                        HStack {
+//                            Text("Number of expenses :")
+//                            Spacer()
+//                            ForEach(car.expenses?) { expense in
+//                                Text(String(expense.price))
+//                            }
+//                        }
+                        
                     }
-                    
+
                     NavigationLink {
                         editCarView(car:car)
                     } label: {
@@ -101,10 +112,10 @@ struct CarDetailView: View {
                         }
                     }
                     .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
-                    
+
                     .navigationTitle(Text("Car Fleet"))
                     .navigationBarTitleDisplayMode(.large)
-                    
+
                 }
                 .padding(.horizontal)
             }
@@ -119,9 +130,9 @@ struct CarDetailView: View {
     }
 }
 
-struct CarDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        let model = CarModel()
-        CarDetailView(car: model.cars[0])
-    }
-}
+//struct CarDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+////        let model = CarModel()
+//        CarDetailView(car: model.cars[0])
+//    }
+//}

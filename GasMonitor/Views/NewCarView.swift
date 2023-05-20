@@ -10,18 +10,20 @@ import PhotosUI
 
 struct NewCarView: View {
     
-    @EnvironmentObject var model:CarModel
+//    @EnvironmentObject var model:CarModel
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @Environment(\.dismiss) var dismiss
     
     @State var brand:String = ""
     @State var carModel:String = ""
     @State var nickname:String = ""
     @State var energy:String = ""
     @State var image:String = ""
-    @State var milage:Int = 0
+    @State var milage:Int64 = 0
     @State var fuelConsumption:Float?
-    @State var modelYear:Int = 0
-    @State var tankCapacity:Int = 0
-    @State var horsepower:Int = 0
+    @State var modelYear:Int64 = 0
+    @State var tankCapacity:Int64 = 0
+    @State var horsepower:Int64 = 0
     @State var engineSize:Float = 0
     
     
@@ -213,7 +215,9 @@ struct NewCarView: View {
             }
             
             Button {
-                model.addCar(brand: brand, model: carModel, nickname: nickname, energy: energy, image: "guilia", milage: milage, modelYear: modelYear, fuelConsumption: fuelConsumption, tankCapacity: tankCapacity, horsepower: horsepower, engineSize: engineSize)
+//                model.addCar(brand: brand, model: carModel, nickname: nickname, energy: energy, image: "guilia", milage: milage, modelYear: modelYear, fuelConsumption: fuelConsumption, tankCapacity: tankCapacity, horsepower: horsepower, engineSize: engineSize)
+                DataController.shared.addCar(brand: brand, model: carModel, energy: energy, milage:milage, modelYear:modelYear, tankCapacity:tankCapacity, horsepower:horsepower, engineSize:engineSize, nickname:nickname, context:managedObjectContext)
+                dismiss()
                 
             } label: {
                 //Image(systemName: "checkmark.circle.fill")
@@ -242,6 +246,6 @@ struct NewCarView: View {
 struct NewCarView_Previews: PreviewProvider {
     static var previews: some View {
         NewCarView()
-            .environmentObject(CarModel())
+//            .environmentObject(CarModel())
     }
 }
