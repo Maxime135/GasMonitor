@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Charts
 
 struct ConsumptionView: View {
     
@@ -33,13 +34,15 @@ struct ConsumptionView: View {
                     .foregroundColor(Color.gray)
                     .padding(.bottom)
                 
+                // Month global overview
+                
                 HStack {
                     ZStack {
                         Rectangle()
                             .frame(height: 75.0)
                             .foregroundColor(/*@START_MENU_TOKEN@*/Color(hue: 0.384, saturation: 0.382, brightness: 0.643)/*@END_MENU_TOKEN@*/)
                             .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                            .shadow(color: .gray, radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+//                            .shadow(color: .gray, radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                         VStack {
                             HStack {
                                 Image(systemName: "dollarsign.circle.fill")
@@ -61,7 +64,7 @@ struct ConsumptionView: View {
                             .frame(height: 75.0)
                             .foregroundColor(/*@START_MENU_TOKEN@*/Color(hue: 0.55, saturation: 0.492, brightness: 1.0)/*@END_MENU_TOKEN@*/)
                             .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                            .shadow(color: .gray, radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+//                            .shadow(color: .gray, radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                         VStack {
                             HStack {
                                 Image(systemName: "fuelpump.circle.fill")
@@ -79,6 +82,30 @@ struct ConsumptionView: View {
                         .padding(.all)
                     }
                 }
+                
+                // Bar Chart
+                
+                HStack {
+                    Chart {
+                        ForEach(expense) { shape in
+                                BarMark(
+                                    x: .value("Month", getMonthString(monthInt: shape.date!.get(.month))),
+                                    y: .value("€", shape.price)
+                                )
+                                .foregroundStyle(by: .value("Car", shape.car!.model!))
+                                .cornerRadius(5)
+//                                .annotation(position: .overlay) {
+//                                    Text(String(shape.car!.model!))
+//                                        .foregroundColor(Color.white)
+//                                        .font(.system(size: 12, weight: .bold))
+//                                }
+                            }
+                    }
+                    .chartYAxisLabel {
+                        Text("€")
+                    }
+                }
+                .frame(height: 150.0)
                 
                 ForEach(car) { element in
                     Text(element.model!)
@@ -139,14 +166,17 @@ struct ConsumptionView: View {
     //                }
                 }
             }
-            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            .padding(/*@START_MENU_TOKEN@*/[.leading, .bottom, .trailing]/*@END_MENU_TOKEN@*/)
         }
         .navigationViewStyle(.stack)
         
         
     }
     
-    
+    func getMonthString(monthInt:Int) -> String {
+        var monthFirstLetter:[String] = ["J","F","M","A","M","J","J","A","S","O","N","D"]
+        return monthFirstLetter[monthInt]
+    }
     
     
     func getMonthPrice() -> Int {
