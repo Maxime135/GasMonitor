@@ -26,6 +26,9 @@ struct NewCarView: View {
     @State var horsepower:Int64 = 0
     @State var engineSize:Float = 0
     
+    // Color choice
+    @State private var carColor = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2)
+    
     
     @State var selectedCar:Int = 0
     @State var selectedFuelType:Int = 1
@@ -177,6 +180,15 @@ struct NewCarView: View {
                             .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     }
                     .padding(.horizontal)
+                    
+//                    HStack {
+//                        Text("Color")
+//                            .font(.title2)
+//                            .fontWeight(.semibold)
+//                        Spacer()
+//                        ColorPicker("color", selection: $carColor)
+//                    }
+//                    .padding(.horizontal)
                 }
                 
                 

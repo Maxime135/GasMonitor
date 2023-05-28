@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7331EC9F2A17BCBC00BC3903 /* CarModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7331EC9D2A17BCBC00BC3903 /* CarModel.xcdatamodeld */; };
+		73083B292A238F5900AC5D2D /* CarModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73083B272A238F5900AC5D2D /* CarModel.xcdatamodeld */; };
+		73083B2C2A23A00000AC5D2D /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73083B2B2A23A00000AC5D2D /* MapModel.swift */; };
 		7331ECA12A17C10D00BC3903 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7331ECA02A17C10D00BC3903 /* DataController.swift */; };
 		7331ECA72A19664B00BC3903 /* EditExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7331ECA62A19664B00BC3903 /* EditExpenseView.swift */; };
 		73411BAE29C7A13C00A804C3 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73411BAD29C7A13C00A804C3 /* AddExpenseView.swift */; };
@@ -27,7 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7331EC9E2A17BCBC00BC3903 /* CarModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CarModel.xcdatamodel; sourceTree = "<group>"; };
+		73083B282A238F5900AC5D2D /* CarModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CarModel.xcdatamodel; sourceTree = "<group>"; };
+		73083B2A2A239FAF00AC5D2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		73083B2B2A23A00000AC5D2D /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
 		7331ECA02A17C10D00BC3903 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		7331ECA62A19664B00BC3903 /* EditExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseView.swift; sourceTree = "<group>"; };
 		73411BAD29C7A13C00A804C3 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
@@ -62,7 +65,7 @@
 		7331EC9C2A17BCA100BC3903 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				7331EC9D2A17BCBC00BC3903 /* CarModel.xcdatamodeld */,
+				73083B272A238F5900AC5D2D /* CarModel.xcdatamodeld */,
 				7331ECA02A17C10D00BC3903 /* DataController.swift */,
 			);
 			path = DataModel;
@@ -87,6 +90,7 @@
 		73826A1229C7534800F2DDB7 /* GasMonitor */ = {
 			isa = PBXGroup;
 			children = (
+				73083B2A2A239FAF00AC5D2D /* Info.plist */,
 				73826A1329C7534800F2DDB7 /* GasMonitorApp.swift */,
 				7331EC9C2A17BCA100BC3903 /* DataModel */,
 				73826A2F29C75F3600F2DDB7 /* Shared */,
@@ -145,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				73826A2D29C75C1100F2DDB7 /* DataService.swift */,
+				73083B2B2A23A00000AC5D2D /* MapModel.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -235,7 +240,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7331EC9F2A17BCBC00BC3903 /* CarModel.xcdatamodeld in Sources */,
+				73083B292A238F5900AC5D2D /* CarModel.xcdatamodeld in Sources */,
+				73083B2C2A23A00000AC5D2D /* MapModel.swift in Sources */,
 				73411BAE29C7A13C00A804C3 /* AddExpenseView.swift in Sources */,
 				73826A1429C7534800F2DDB7 /* GasMonitorApp.swift in Sources */,
 				73C672D129D8AA6E0049A82B /* editCarView.swift in Sources */,
@@ -378,7 +384,9 @@
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GasMonitor/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Geolocation is needed to link a place to an expense";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -419,7 +427,9 @@
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GasMonitor/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Geolocation is needed to link a place to an expense";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -470,12 +480,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		7331EC9D2A17BCBC00BC3903 /* CarModel.xcdatamodeld */ = {
+		73083B272A238F5900AC5D2D /* CarModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				7331EC9E2A17BCBC00BC3903 /* CarModel.xcdatamodel */,
+				73083B282A238F5900AC5D2D /* CarModel.xcdatamodel */,
 			);
-			currentVersion = 7331EC9E2A17BCBC00BC3903 /* CarModel.xcdatamodel */;
+			currentVersion = 73083B282A238F5900AC5D2D /* CarModel.xcdatamodel */;
 			path = CarModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

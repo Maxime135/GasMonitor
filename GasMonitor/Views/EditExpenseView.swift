@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct EditExpenseView: View {
     @Environment(\.dismiss) var dismiss
@@ -22,11 +23,23 @@ struct EditExpenseView: View {
     @State var drivenDistance:Int64 = 0
     @State var fuelQuantity:Double = 0.0
     @State var place:String? = ""
+    @State var date:Date = Date()
     
     @State var price:Double = 0
     
+    // Geolocation related
+    @StateObject private var mapAPI = MapAPI()
+    @State var adressText = ""
+    
     var body: some View {
         VStack {
+            Map(coordinateRegion: $mapAPI.region, annotationItems: mapAPI.locations) { location in
+                MapMarker(coordinate: location.coordinate, tint: .red)
+            }
+            .frame(height: 200.0)
+            
+            Divider()
+            
             Form {
                 Section {
                     Picker("select car", selection: $selectedCar) {
@@ -46,6 +59,7 @@ struct EditExpenseView: View {
                         fuelQuantity = expense.liters
                         place = expense.place
                         price = expense.price
+                        adressText = expense.place ?? ""
                     }
                 }
                 
@@ -90,11 +104,30 @@ struct EditExpenseView: View {
                             .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
                             .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     }
+                    HStack {
+                        DatePicker(
+                                "Date",
+                                selection: $date,
+                                displayedComponents: [.date]
+                            )
+                        .datePickerStyle(.compact)
+                    }
+                    HStack {
+                        Text("Location")
+                        Spacer()
+                        TextField("Address", text: $adressText)
+                            .frame(width: 125.0)
+                            .font(.body)
+                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                            .onSubmit {
+                                mapAPI.getLocation(address: adressText, delta: 0.005)
+                            }
+                    }
                 }
             }
             
             Button {
-                DataController.shared.editExpense(expense: expense, liters: fuelQuantity, price: price, traveledDistance: drivenDistance, energy: selectedFuel, place: place!, date: Date(), context: managedObjectContext)
+                DataController.shared.editExpense(expense: expense, liters: fuelQuantity, price: price, traveledDistance: drivenDistance, energy: selectedFuel, place: adressText, date: date, context: managedObjectContext)
                 dismiss()
             } label: {
                 //Image(systemName: "checkmark.circle.fill")
@@ -111,6 +144,9 @@ struct EditExpenseView: View {
                 }
             }
             .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
+            .onAppear {
+                mapAPI.getLocation(address: adressText, delta: 0.005)
+            }
             
         }
         

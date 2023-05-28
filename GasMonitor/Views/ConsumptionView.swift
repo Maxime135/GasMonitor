@@ -28,7 +28,7 @@ struct ConsumptionView: View {
                         .fontWeight(.bold)
                     Spacer()
                 }
-                Text("Sun, 2 April")
+                Text(getMonthString(date:Date()))
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundColor(Color.gray)
@@ -105,68 +105,104 @@ struct ConsumptionView: View {
                         Text("€")
                     }
                 }
-                .frame(height: 150.0)
+                .frame(height: 250.00)
                 
-                ForEach(car) { element in
-                    Text(element.model!)
-                        .font(.title3)
-                        .padding(.top)
-                    
-    //                Text(String(element.expenses!.count))
-                    
-                    List {
-                        ForEach(Array(element.expenses as? Set<Expense> ?? [])) { expenseElement in
-                            NavigationLink(destination: EditExpenseView(expense:expenseElement)) {
-                                VStack {
-                                    HStack {
-            //                            Text(String(expenseElement.traveledDistance) + " km")
-                                        Text(String(expenseElement.price) + " €")
-                                            .font(.subheadline)
-                                        Spacer()
-                                        Text(getDateAsString(date: expenseElement.date!))
-                                            .font(.subheadline)
-                                            .foregroundColor(Color.gray)
+//                ForEach(car) { element in
+//                    Text(element.model!)
+//                        .font(.title3)
+//                        .padding(.top)
+//
+//    //                Text(String(element.expenses!.count))
+//
+//                    List {
+//                        ForEach(Array(element.expenses as? Set<Expense> ?? [])) { expenseElement in
+//                            NavigationLink(destination: EditExpenseView(expense:expenseElement)) {
+//                                VStack {
+//                                    HStack {
+//            //                            Text(String(expenseElement.traveledDistance) + " km")
+//                                        Text(String(expenseElement.price) + " €")
+//                                            .font(.subheadline)
+//                                        Spacer()
+//                                        Text(getDateAsString(date: expenseElement.date!))
+//                                            .font(.subheadline)
+//                                            .foregroundColor(Color.gray)
+//
+//                                    }
+//                                    HStack {
+//                                        Text(expenseElement.place ?? "")
+//                                            .font(.subheadline)
+//                                            .foregroundColor(Color.gray)
+//                                        Spacer()
+//                                    }
+//
+//                                }.padding(.leading)
+//                            }
+//
+//                        }
+//                        .onDelete(perform: deleteExpense)
+//                    }
+//                    .listStyle(.plain)
+//    //                ForEach(Array(element.expenses as? Set<Expense> ?? [])) { expenseElement in
+//    //                    VStack {
+//    //                        HStack {
+//    ////                            Text(String(expenseElement.traveledDistance) + " km")
+//    //                            Text(String(expenseElement.price) + " €")
+//    //                                .font(.subheadline)
+//    //                            Spacer()
+//    //                            Text(expenseElement.place ?? "")
+//    //                                .font(.subheadline)
+//    //                                .foregroundColor(Color.gray)
+//    //
+//    //                        }
+//    //
+//    ////                        HStack {
+//    ////                            Spacer()
+//    ////                            Text(expenseElement.place ?? "")
+//    ////                                .font(.subheadline)
+//    ////                                .foregroundColor(Color.gray)
+//    ////                        }
+//    //
+//    //                    }.padding(.leading)
+//    //                }
+//                }
+                
+                Text("Expenses")
+                                        .font(.title3)
+                                        .padding(.top)
+                
+                List {
+                    ForEach(expense) { expenseElement in
+                        NavigationLink(destination: EditExpenseView(expense:expenseElement)) {
+                            VStack {
+                                HStack {
+        //                            Text(String(expenseElement.traveledDistance) + " km")
+                                    Text(String(expenseElement.price) + " €")
+                                        .font(.subheadline)
+                                    Spacer()
+                                    Text(getDateAsString(date: expenseElement.date!))
+                                        .font(.subheadline)
+                                        .foregroundColor(Color.gray)
 
-                                    }
-                                    HStack {
-                                        Text(expenseElement.place ?? "")
-                                            .font(.subheadline)
-                                            .foregroundColor(Color.gray)
-                                        Spacer()
-                                    }
+                                }
+                                HStack {
+                                    Text(expenseElement.place ?? "")
+                                        .font(.subheadline)
+                                        .foregroundColor(Color.gray)
+                                    Spacer()
+                                    Text(expenseElement.car!.model!)
+                                        .font(.subheadline)
+                                        .foregroundColor(Color.blue)
+                                }
 
-                                }.padding(.leading)
-                            }
-                            
+                            }.padding(.leading)
                         }
-                        .onDelete(perform: deleteExpense)
+                        
                     }
-                    .listStyle(.plain)
-    //                ForEach(Array(element.expenses as? Set<Expense> ?? [])) { expenseElement in
-    //                    VStack {
-    //                        HStack {
-    ////                            Text(String(expenseElement.traveledDistance) + " km")
-    //                            Text(String(expenseElement.price) + " €")
-    //                                .font(.subheadline)
-    //                            Spacer()
-    //                            Text(expenseElement.place ?? "")
-    //                                .font(.subheadline)
-    //                                .foregroundColor(Color.gray)
-    //
-    //                        }
-    //
-    ////                        HStack {
-    ////                            Spacer()
-    ////                            Text(expenseElement.place ?? "")
-    ////                                .font(.subheadline)
-    ////                                .foregroundColor(Color.gray)
-    ////                        }
-    //
-    //                    }.padding(.leading)
-    //                }
+                    .onDelete(perform: deleteExpense)
                 }
+                .listStyle(.plain)
             }
-            .padding(/*@START_MENU_TOKEN@*/[.leading, .bottom, .trailing]/*@END_MENU_TOKEN@*/)
+            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
         }
         .navigationViewStyle(.stack)
         
@@ -174,20 +210,26 @@ struct ConsumptionView: View {
     }
     
     func getMonthString(monthInt:Int) -> String {
-        var monthFirstLetter:[String] = ["J","F","M","A","M","J","J","A","S","O","N","D"]
-        return monthFirstLetter[monthInt]
+        let monthFirstLetter:[String] = ["J","F","M","A","M","J","J","A","S","O","N","D"]
+        return monthFirstLetter[monthInt-1]
+    }
+    
+    func getMonthString(date:Date) -> String {
+        let month:String = ["January","February","March","April","May","June","July","August","September","October","November","December"][date.get(.month)-1]
+        let day:String = ["Mon","Tues", "Wed","Thr","Fri","Sat","Sun"][date.getDayNumberOfWeek()!]
+        return String(day+", "+String(date.get(.day))+" "+month)
     }
     
     
     func getMonthPrice() -> Int {
         var priceThisMonth:Float = 0.0
-        var currentMonth = Date().get(.month)
-        var currentYear = Date().get(.year)
+        let currentMonth = Date().get(.month)
+        let currentYear = Date().get(.year)
         
 //        ForEach(expense) { element in
         for element in expense {
-            var expenseMonth = element.date!.get(.month)
-            var expenseYear = element.date!.get(.year)
+            let expenseMonth = element.date!.get(.month)
+            let expenseYear = element.date!.get(.year)
             
             if expenseMonth == currentMonth && expenseYear == currentYear {
                 priceThisMonth += Float(element.price)
@@ -249,5 +291,8 @@ extension Date {
 
     func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
         return calendar.component(component, from: self)
+    }
+    func getDayNumberOfWeek() -> Int? {
+            return Calendar.current.dateComponents([.weekday], from: self).weekday
     }
 }

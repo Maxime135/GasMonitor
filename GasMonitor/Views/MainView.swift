@@ -16,6 +16,7 @@ struct MainView: View {
     
     @State var tabIndex = 3
     
+    
     var body: some View {
         TabView(selection: $tabIndex) {
             ConsumptionView()
