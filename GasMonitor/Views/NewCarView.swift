@@ -239,7 +239,7 @@ struct NewCarView: View {
             
             //Spacer()
         }
-        .padding(.horizontal)
+        .padding([.top, .leading, .trailing])
     }
 }
 

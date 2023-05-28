@@ -112,6 +112,7 @@ struct ConsumptionView: View {
                             }
                             
                         }
+                        .onDelete(perform: deleteExpense)
                     }
                     .listStyle(.plain)
     //                ForEach(Array(element.expenses as? Set<Expense> ?? [])) { expenseElement in
@@ -148,7 +149,7 @@ struct ConsumptionView: View {
     
     
     
-    func getMonthPrice() -> Float {
+    func getMonthPrice() -> Int {
         var priceThisMonth:Float = 0.0
         var currentMonth = Date().get(.month)
         var currentYear = Date().get(.year)
@@ -162,10 +163,10 @@ struct ConsumptionView: View {
                 priceThisMonth += Float(element.price)
             }
         }
-        return priceThisMonth
+        return Int(priceThisMonth)
     }
     
-    func getMonthDistance() -> Float {
+    func getMonthDistance() -> Int {
         var distanceThisMonth:Float = 0.0
         var currentMonth = Date().get(.month)
         var currentYear = Date().get(.year)
@@ -179,7 +180,7 @@ struct ConsumptionView: View {
                 distanceThisMonth += Float(element.traveledDistance)
             }
         }
-        return distanceThisMonth
+        return Int(distanceThisMonth)
     }
     
     func getDateAsString(date:Date) -> String {
@@ -191,6 +192,15 @@ struct ConsumptionView: View {
         // Convert Date to String
         
         return dateFormatter.string(from: date)
+    }
+    
+    
+    private func deleteExpense(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { expense[$0] }.forEach(managedObjectContext.delete)
+            
+            DataController().save(context: managedObjectContext)
+        }
     }
 }
 
