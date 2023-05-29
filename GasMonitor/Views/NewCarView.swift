@@ -12,13 +12,16 @@ struct NewCarView: View {
     
 //    @EnvironmentObject var model:CarModel
     @Environment(\.managedObjectContext) var managedObjectContext
+////    var expense: FetchedResults<Expense>.Element
+//    var car: FetchedResults<Car>.Element
     @Environment(\.dismiss) var dismiss
+    
     
     @State var brand:String = ""
     @State var carModel:String = ""
     @State var nickname:String = ""
     @State var energy:String = ""
-    @State var image:String = ""
+//    @State var image:String = ""
     @State var milage:Int64 = 0
     @State var fuelConsumption:Float?
     @State var modelYear:Int64 = 0
@@ -39,87 +42,59 @@ struct NewCarView: View {
     @State var price:Float = 20.0
     
 //    Variables related to the selected image:
-    @State private var selectedItem: PhotosPickerItem? = nil
-    @State private var selectedImageData: Data? = nil
+//    @State private var selectedItem: PhotosPickerItem? = nil
+//    @State private var selectedImageData: Data? = nil
+    @StateObject private var imagePicker = ImagePicker()
+//    @State private var image:UIImage?
     
     var body: some View {
         
         VStack {
-            ScrollView {
-                
-                if let selectedImageData,
-                    let uiImage = UIImage(data: selectedImageData) {
-                        Image(uiImage: uiImage)
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: 250, height: 250)
-                            .resizable()
-                            .scaledToFill()
-//                            .frame(width: 300, height: 300)
-                            .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                            .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                            .padding(.bottom)
-                        }
-                
-                Group {
+            
+            Form {
+                Section {
                     HStack {
                         Text("Brand")
-                            .font(.title2)
-                            .fontWeight(.semibold)
                         Spacer()
                         TextField("enter the brand", text: $brand)
                             .frame(width: 125)
                             .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
                             .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     }
-                    .padding(.horizontal)
-                    
                     HStack {
                         Text("Model")
-                            .font(.title2)
-                            .fontWeight(.semibold)
                         Spacer()
                         TextField("enter the model", text: $carModel)
                             .frame(width: 125)
                             .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
                             .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     }
-                    .padding(.horizontal)
-                    
                     HStack {
                         Text("Nickname")
-                            .font(.title2)
-                            .fontWeight(.semibold)
                         Spacer()
                         TextField("optional", text: $nickname)
                             .frame(width: 125)
                             .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
                             .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     }
-                    .padding(.horizontal)
-                    
+                }
+                
+                Section {
                     HStack {
-                        Text("Energy")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                        Spacer()
-                        Picker("select fuel", selection: $energy) {
+//                        Text("Energy")
+//                        Spacer()
+                        Picker("Energy", selection: $energy) {
                             Text("Gas").multilineTextAlignment(.leading).tag("gas")
                             Text("Diesel").tag("diesel")
                             Text("Flexfuel").tag("flexfuel")
                             Text("GPL").tag("gpl")
                             Text("Electric").tag("electric")
                         }
-                        .frame(width: 210.0)
+//                        .frame(width: 210.0)
                         .pickerStyle(MenuPickerStyle())
-                        
                     }
-                    .padding(.horizontal)
-                    
                     HStack {
-                        Text("Milage (km)")
-                            .font(.title2)
-                            .fontWeight(.semibold)
+                        Text("Milage")
                         Spacer()
                         TextField("", value: $milage, formatter: NumberFormatter())
                             .frame(width: 125.0)
@@ -127,12 +102,8 @@ struct NewCarView: View {
                             .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
                             .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     }
-                    .padding(.horizontal)
-                    
                     HStack {
                         Text("Model Year")
-                            .font(.title2)
-                            .fontWeight(.semibold)
                         Spacer()
                         TextField("", value: $modelYear, formatter: NumberFormatter())
                             .frame(width: 125.0)
@@ -140,12 +111,8 @@ struct NewCarView: View {
                             .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
                             .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     }
-                    .padding(.horizontal)
-                    
                     HStack {
                         Text("Fuel Tank Capacity (L)")
-                            .font(.title2)
-                            .fontWeight(.semibold)
                         Spacer()
                         TextField("", value: $tankCapacity, formatter: NumberFormatter())
                             .frame(width: 125.0)
@@ -153,12 +120,11 @@ struct NewCarView: View {
                             .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
                             .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     }
-                    .padding(.horizontal)
-                    
+                }
+                
+                Section {
                     HStack {
                         Text("Engine Power (HP)")
-                            .font(.title2)
-                            .fontWeight(.semibold)
                         Spacer()
                         TextField("optional", value: $horsepower, formatter: NumberFormatter())
                             .frame(width: 125.0)
@@ -166,12 +132,8 @@ struct NewCarView: View {
                             .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
                             .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     }
-                    .padding(.horizontal)
-                    
                     HStack {
                         Text("Engine Size (L)")
-                            .font(.title2)
-                            .fontWeight(.semibold)
                         Spacer()
                         TextField("optional", value: $engineSize, formatter: NumberFormatter())
                             .frame(width: 125.0)
@@ -179,56 +141,38 @@ struct NewCarView: View {
                             .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
                             .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                     }
-                    .padding(.horizontal)
+                }
+                
+                Section {
+                    HStack {
+                        Text("Picture")
+                        Spacer()
+                        PhotosPicker("Picture", selection: $imagePicker.imageSelection, matching: .images, photoLibrary: .shared())
+                            .buttonStyle(.plain)
+                    }
                     
-//                    HStack {
-//                        Text("Color")
-//                            .font(.title2)
-//                            .fontWeight(.semibold)
-//                        Spacer()
-//                        ColorPicker("color", selection: $carColor)
-//                    }
-//                    .padding(.horizontal)
+                    if (imagePicker.uiImage != nil) {
+                        Image(uiImage: imagePicker.uiImage!)
+        //                            .resizable()
+        //                            .scaledToFit()
+        //                            .frame(width: 250, height: 250)
+                                    .resizable()
+                                    .scaledToFill()
+//        //                            .frame(width: 300, height: 300)
+//                                    .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+//                                    .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+//                                    .padding(.bottom)
+                    }
+                    
                 }
                 
                 
-                HStack {
-                    Text("Picture")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                    Spacer()
-                    
-                    PhotosPicker(
-                            selection: $selectedItem,
-                            matching: .images,
-                            photoLibrary: .shared()) {
-                                Text("Select a photo")
-                            }
-                            .onChange(of: selectedItem) { newItem in
-                                            Task {
-                                                // Retrieve selected asset in the form of Data
-                                                if let data = try? await newItem?.loadTransferable(type: Data.self) {
-                                                    selectedImageData = data
-                                                }
-                                            }
-                                        }
-//                    Button {
-//                        //
-//                    } label: {
-//                        Text("Add a picture")
-//                            .foregroundColor(Color.blue)
-//                            .multilineTextAlignment(.leading)
-//                            .frame(width: 150.0)
-//                    }
-
-                }
-                .padding(.horizontal)
                 
             }
+        
             
             Button {
-//                model.addCar(brand: brand, model: carModel, nickname: nickname, energy: energy, image: "guilia", milage: milage, modelYear: modelYear, fuelConsumption: fuelConsumption, tankCapacity: tankCapacity, horsepower: horsepower, engineSize: engineSize)
-                DataController.shared.addCar(brand: brand, model: carModel, energy: energy, milage:milage, modelYear:modelYear, tankCapacity:tankCapacity, horsepower:horsepower, engineSize:engineSize, nickname:nickname, context:managedObjectContext)
+                DataController.shared.addCar(brand: brand, model: carModel, energy: energy, milage:milage, modelYear:modelYear, tankCapacity:tankCapacity, horsepower:horsepower, engineSize:engineSize, nickname:nickname, image: imagePicker.uiImage, context:managedObjectContext)
                 dismiss()
                 
             } label: {
@@ -251,7 +195,6 @@ struct NewCarView: View {
             
             //Spacer()
         }
-        .padding([.top, .leading, .trailing])
     }
 }
 

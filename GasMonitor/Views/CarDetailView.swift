@@ -19,6 +19,19 @@ struct CarDetailView: View {
         VStack {
             ScrollView {
                 VStack{
+                    if (car.imageId != nil) {
+                        Image(uiImage: FileManager().retrieveImage(with: car.imageId!)!)
+        //                            .resizable()
+        //                            .scaledToFit()
+        //                            .frame(width: 250, height: 250)
+                                    .resizable()
+                                    .scaledToFill()
+        //                            .frame(width: 300, height: 300)
+                                    .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                                    .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                                    .padding(.bottom)
+        //                        }
+                    }
 //                    Image(car.image)
 //                        .resizable()
 //                        .scaledToFill()
@@ -113,8 +126,8 @@ struct CarDetailView: View {
                     }
                     .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
 
-                    .navigationTitle(Text("Car Fleet"))
-                    .navigationBarTitleDisplayMode(.large)
+//                    .navigationTitle(Text("Car Fleet"))
+//                    .navigationBarTitleDisplayMode(.large)
 
                 }
                 .padding(.horizontal)
@@ -122,7 +135,7 @@ struct CarDetailView: View {
             
             
         }
-        .navigationBarTitle(Text(car.nickname ?? ""), displayMode: .inline)
+//        .navigationBarTitle(Text(car.nickname ?? ""), displayMode: .inline)
         
         
 

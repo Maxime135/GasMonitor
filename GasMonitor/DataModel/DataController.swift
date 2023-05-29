@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class DataController: ObservableObject {
     let container = NSPersistentContainer(name:"CarModel")
@@ -30,7 +31,7 @@ class DataController: ObservableObject {
         }
     }
     
-    func addCar(brand: String, model:String, energy:String, milage:Int64, modelYear:Int64, tankCapacity:Int64?, horsepower:Int64?, engineSize:Float?, nickname:String?, context:NSManagedObjectContext) {
+    func addCar(brand: String, model:String, energy:String, milage:Int64, modelYear:Int64, tankCapacity:Int64?, horsepower:Int64?, engineSize:Float?, nickname:String?, image:UIImage?, context:NSManagedObjectContext) {
         let car = Car(context: context)
         car.id = UUID()
         car.brand = brand
@@ -38,16 +39,28 @@ class DataController: ObservableObject {
         car.energy = energy
         car.milage = milage
         car.modelYear = modelYear
-        car.image = "sputnik"
+//        car.image = "sputnik"
         car.nickname = nickname
         car.tankCapacity = tankCapacity ?? 0
         car.horsepower = horsepower ?? 0
         car.engineSize = engineSize ?? 0
         
+        if (image != nil) {
+            car.imageId = UUID().uuidString
+        }
+        
         save(context: context)
+        
+        if (image != nil) {
+            FileManager().saveImage(id: car.imageId!, image: image!)
+            print("image saved")
+        }
+        save(context: context)
+        
+        
     }
     
-    func editCar(car: Car, brand: String, model:String, energy:String, milage:Int64, modelYear:Int64, tankCapacity:Int64?, horsepower:Int64?, engineSize:Float?, nickname:String?, context:NSManagedObjectContext) {
+    func editCar(car: Car, brand: String, model:String, energy:String, milage:Int64, modelYear:Int64, tankCapacity:Int64?, horsepower:Int64?, engineSize:Float?, nickname:String?, image:UIImage?, context:NSManagedObjectContext) {
         car.brand = brand
         car.model = model
         car.energy = energy
@@ -58,6 +71,16 @@ class DataController: ObservableObject {
         car.horsepower = horsepower ?? 0
         car.engineSize = engineSize ?? 0
         
+        if (image != nil) {
+            car.imageId = UUID().uuidString
+        }
+        
+        save(context: context)
+        
+        if (image != nil) {
+            FileManager().saveImage(id: car.imageId!, image: image!)
+            print("image saved")
+        }
         save(context: context)
     }
     

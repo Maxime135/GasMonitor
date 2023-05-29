@@ -60,6 +60,7 @@ struct EditExpenseView: View {
                         place = expense.place
                         price = expense.price
                         adressText = expense.place ?? ""
+                        date = expense.date ?? Date()
                     }
                 }
                 

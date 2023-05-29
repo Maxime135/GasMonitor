@@ -52,6 +52,7 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
 //            .environmentObject(CarModel())
+            .environment(\.managedObjectContext, DataController().container.viewContext)
             
     }
 }

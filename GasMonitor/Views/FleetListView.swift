@@ -28,6 +28,17 @@ struct FleetListView: View {
                         ForEach(car) { element in
                             NavigationLink(destination: CarDetailView(car: element), label: {
                                 HStack(spacing: 20.0) {
+                                    
+                                    if (element.imageId != nil) {
+                                        Image(uiImage: FileManager().retrieveImage(with: element.imageId!)!)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 50.0, height: 50.0, alignment: .center)
+                                            .clipped()
+                                            .cornerRadius(5.0)
+//                                            .aspectRatio(1, contentMode: .fill)
+                        //                        }
+                                    }
 //                                    Image(element.image!)
 //                                        .resizable()
 //                                        .scaledToFill()
