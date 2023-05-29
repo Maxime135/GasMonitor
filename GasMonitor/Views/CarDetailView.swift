@@ -47,7 +47,7 @@ struct CarDetailView: View {
                         Text(car.nickname ?? "")
                             .foregroundColor(.gray)
                     }
-                    .padding([.top, .leading, .trailing])
+                    .padding([.leading, .trailing])
 
                     Divider()
 

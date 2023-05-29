@@ -14,7 +14,7 @@ struct MainView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(sortDescriptors:[SortDescriptor(\.brand)]) var car:FetchedResults<Car>
     
-    @State var tabIndex = 3
+    @State private var tabIndex = 1
     
     
     var body: some View {
@@ -24,7 +24,7 @@ struct MainView: View {
                 VStack{
                     Image(systemName: "chart.bar.xaxis")
                     Text("Overview")
-                }
+                }.tag(1)
             }
             AddExpenseView()
                 .tabItem {
@@ -32,14 +32,14 @@ struct MainView: View {
                         Image(systemName: "plus.circle.fill")
                         Text("Add")
                     }
-                }
+                }.tag(2)
             FleetListView()
             .tabItem {
                 VStack{
                     Image(systemName: "car.2")
                     Text("Fleet")
                 }
-            }
+            }.tag(3)
             
         
             

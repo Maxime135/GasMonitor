@@ -37,6 +37,18 @@ struct EditExpenseView: View {
                 MapMarker(coordinate: location.coordinate, tint: .red)
             }
             .frame(height: 200.0)
+            .onAppear {
+                selectedCar = expense.car
+                selectedFuel = expense.energy!
+                fuelPrice = expense.price
+                drivenDistance = expense.traveledDistance
+                fuelQuantity = expense.liters
+                place = expense.place
+                price = expense.price
+                adressText = expense.place ?? ""
+                date = expense.date ?? Date()
+                mapAPI.getLocation(address: adressText, delta: 0.005)
+            }
             
             Divider()
             
@@ -51,17 +63,17 @@ struct EditExpenseView: View {
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
-                    .onAppear {
-                        selectedCar = expense.car
-                        selectedFuel = expense.energy!
-                        fuelPrice = expense.price
-                        drivenDistance = expense.traveledDistance
-                        fuelQuantity = expense.liters
-                        place = expense.place
-                        price = expense.price
-                        adressText = expense.place ?? ""
-                        date = expense.date ?? Date()
-                    }
+//                    .onAppear {
+//                        selectedCar = expense.car
+//                        selectedFuel = expense.energy!
+//                        fuelPrice = expense.price
+//                        drivenDistance = expense.traveledDistance
+//                        fuelQuantity = expense.liters
+//                        place = expense.place
+//                        price = expense.price
+//                        adressText = expense.place ?? ""
+//                        date = expense.date ?? Date()
+//                    }
                 }
                 
                 Section {
@@ -123,6 +135,7 @@ struct EditExpenseView: View {
                             .onSubmit {
                                 mapAPI.getLocation(address: adressText, delta: 0.005)
                             }
+                            
                     }
                 }
             }
@@ -145,9 +158,9 @@ struct EditExpenseView: View {
                 }
             }
             .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
-            .onAppear {
-                mapAPI.getLocation(address: adressText, delta: 0.005)
-            }
+//            .onAppear {
+//                mapAPI.getLocation(address: adressText, delta: 0.005)
+//            }
             
         }
         

@@ -39,7 +39,7 @@
 		73083B2F2A23EA5600AC5D2D /* Car+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Car+Extension.swift"; sourceTree = "<group>"; };
 		73083B312A23EBED00AC5D2D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7331ECA02A17C10D00BC3903 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		7331ECA62A19664B00BC3903 /* EditExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseView.swift; sourceTree = "<group>"; };
+		7331ECA62A19664B00BC3903 /* EditExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		73411BAD29C7A13C00A804C3 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
 		73826A1029C7534800F2DDB7 /* GasMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GasMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73826A1329C7534800F2DDB7 /* GasMonitorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasMonitorApp.swift; sourceTree = "<group>"; };

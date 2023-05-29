@@ -37,7 +37,9 @@ struct editCarView: View {
     
     @State var price:Float = 20.0
     
-    
+    // Color choice
+//    @State var carColorString:String = "0.9800000786781311 0.8999999761581421 0.19999998807907104 1.0"
+    @State var carColor = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2)
 
     
 //    Variables related to the selected image:
@@ -78,6 +80,11 @@ struct editCarView: View {
                             .frame(width: 125)
                             .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
                             .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    }
+                    HStack {
+                        Text("Color")
+                            Spacer()
+                            ColorPicker("", selection: $carColor)
                     }
                 }
                 
@@ -174,7 +181,7 @@ struct editCarView: View {
             
             
             Button {
-                DataController.shared.editCar(car: car, brand: brand, model:carModel, energy:energy, milage:milage, modelYear:modelYear, tankCapacity:tankCapacity, horsepower:horsepower, engineSize:engineSize, nickname:nickname,image: imagePicker.uiImage, context:managedObjectContext)
+                DataController.shared.editCar(car: car, brand: brand, model:carModel, energy:energy, milage:milage, modelYear:modelYear, tankCapacity:tankCapacity, horsepower:horsepower, engineSize:engineSize, nickname:nickname,image: imagePicker.uiImage, color: DataController.shared.colorToString(color: carColor), context:managedObjectContext)
                 dismiss()
                 
             } label: {
@@ -202,6 +209,7 @@ struct editCarView: View {
                 tankCapacity = car.tankCapacity
                 horsepower = car.horsepower
                 engineSize = car.engineSize
+                carColor = DataController.shared.stringToColor(stringColor: car.color ?? "0.9800000786781311 0.8999999761581421 0.19999998807907104 1.0")
             }
 
         }

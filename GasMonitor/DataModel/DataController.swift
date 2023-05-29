@@ -8,6 +8,7 @@
 import Foundation
 import CoreData
 import UIKit
+import SwiftUI
 
 class DataController: ObservableObject {
     let container = NSPersistentContainer(name:"CarModel")
@@ -31,11 +32,12 @@ class DataController: ObservableObject {
         }
     }
     
-    func addCar(brand: String, model:String, energy:String, milage:Int64, modelYear:Int64, tankCapacity:Int64?, horsepower:Int64?, engineSize:Float?, nickname:String?, image:UIImage?, context:NSManagedObjectContext) {
+    func addCar(brand: String, model:String, energy:String, milage:Int64, modelYear:Int64, tankCapacity:Int64?, horsepower:Int64?, engineSize:Float?, nickname:String?, image:UIImage?,color:String?, context:NSManagedObjectContext) {
         let car = Car(context: context)
         car.id = UUID()
         car.brand = brand
         car.model = model
+        car.color = color
         car.energy = energy
         car.milage = milage
         car.modelYear = modelYear
@@ -60,9 +62,10 @@ class DataController: ObservableObject {
         
     }
     
-    func editCar(car: Car, brand: String, model:String, energy:String, milage:Int64, modelYear:Int64, tankCapacity:Int64?, horsepower:Int64?, engineSize:Float?, nickname:String?, image:UIImage?, context:NSManagedObjectContext) {
+    func editCar(car: Car, brand: String, model:String, energy:String, milage:Int64, modelYear:Int64, tankCapacity:Int64?, horsepower:Int64?, engineSize:Float?, nickname:String?, image:UIImage?,color:String?, context:NSManagedObjectContext) {
         car.brand = brand
         car.model = model
+        car.nickname = nickname
         car.energy = energy
         car.milage = milage
         car.modelYear = modelYear
@@ -70,6 +73,7 @@ class DataController: ObservableObject {
         car.tankCapacity = tankCapacity ?? 0
         car.horsepower = horsepower ?? 0
         car.engineSize = engineSize ?? 0
+        car.color = color
         
         if (image != nil) {
             car.imageId = UUID().uuidString
@@ -130,6 +134,7 @@ class DataController: ObservableObject {
         expense.date = date
         
 //        car.fuelConsumption = (car.fuelConsumption*Float(car.milage)/100 + Float(expense.liters))/(Float(expense.traveledDistance)+Float(car.milage))
+        car.fuelConsumption += Float(expense.liters)/Float(expense.traveledDistance) * 100
         car.milage += traveledDistance
         
         
@@ -140,6 +145,9 @@ class DataController: ObservableObject {
     }
     
     func editExpense(expense: Expense, liters: Double, price:Double, traveledDistance:Int64, energy:String, place:String, date: Date, context:NSManagedObjectContext) {
+        var car = expense.car
+        let previous_liters = expense.liters
+        let previous_traveledDistance = expense.traveledDistance
         
         expense.liters = liters
         expense.price = price
@@ -148,22 +156,34 @@ class DataController: ObservableObject {
         expense.energy = energy
         expense.date = date
         
+        //updating gas milage & car milage:
+        car!.fuelConsumption -= Float(previous_liters)/Float(previous_traveledDistance) * 100
+        car!.fuelConsumption += Float(expense.liters)/Float(expense.traveledDistance) * 100
+        car!.milage -= previous_traveledDistance
+        car!.milage += traveledDistance
+        
         save(context: context)
 //        try! context.save()
     }
     
-//    func getMonthInfo(context:NSManagedObjectContext) {
-//        var priceThisMonth:Float = 0.0
-//        var distanceThisMonth:Float = 0.0
-//
-//
-//
-//        @FetchRequest(
-//            sortDescriptors: [SortDescriptor(keyPath: \Car.expenses.date, ascending: true)],
-//            predicate: NSPredicate(format: "date >= %@", month as NSDate)
-//        ) var expenseThisMonth: FetchedResults<Expense>
-//        ) var expenseThisMonth: FetchedResults<Expense>
-//
+//    func calculateGasMilage(car:Car) -> return Float {
+//        var gasMilage:Float = 0.0
+//        ForEach expense
 //    }
     
+    
+    func colorToString(color:Color) -> String {
+        let rgba = color.cgColor!.components
+        return "\(rgba![0]) \(rgba![1]) \(rgba![2]) \(rgba![3])"
+    }
+    
+    func stringToColor(stringColor:String) -> Color {
+        let red = Double(stringColor.components(separatedBy: " ")[0])
+        let green = Double(stringColor.components(separatedBy: " ")[1])
+        let blue = Double(stringColor.components(separatedBy: " ")[2])
+        let alpha = Double(stringColor.components(separatedBy: " ")[3])
+        
+        return Color(.sRGB, red: red!, green: green!, blue: blue!)
+    }
+
 }

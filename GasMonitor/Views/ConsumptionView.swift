@@ -101,6 +101,13 @@ struct ConsumptionView: View {
 //                                }
                             }
                     }
+                    
+//                    ForEach(car) { car in
+//                            .chartForegroundStyleScale([car.model: DataController.shared.stringToColor(stringColor: car.color ?? "0.9800000786781311 0.8999999761581421 0.19999998807907104 1.0")])
+//                    }
+//                    .chartForegroundStyleScale([
+                    //                        "Green": .green, "Purple": .purple, "Pink": .pink, "Yellow": .yellow
+                    //                    ])
                     .chartYAxisLabel {
                         Text("€")
                     }
@@ -259,7 +266,7 @@ struct ConsumptionView: View {
         let dateFormatter = DateFormatter()
 
         // Set Date Format
-        dateFormatter.dateFormat = "YY/MM/dd"
+        dateFormatter.dateFormat = "MM/dd/YY"
 
         // Convert Date to String
         

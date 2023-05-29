@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22F66" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Car" representedClassName=".Car" syncable="YES" codeGenerationType="class">
         <attribute name="brand" attributeType="String"/>
+        <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="energy" attributeType="String"/>
         <attribute name="engineSize" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="fuelConsumption" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>

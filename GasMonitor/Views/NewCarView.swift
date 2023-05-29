@@ -20,6 +20,7 @@ struct NewCarView: View {
     @State var brand:String = ""
     @State var carModel:String = ""
     @State var nickname:String = ""
+//    @State var carColorString:String?
     @State var energy:String = ""
 //    @State var image:String = ""
     @State var milage:Int64 = 0
@@ -30,7 +31,7 @@ struct NewCarView: View {
     @State var engineSize:Float = 0
     
     // Color choice
-    @State private var carColor = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2)
+    @State var carColor = Color(.sRGB, red: 0.98, green: 0.9, blue: 0.2)
     
     
     @State var selectedCar:Int = 0
@@ -76,6 +77,11 @@ struct NewCarView: View {
                             .frame(width: 125)
                             .font(/*@START_MENU_TOKEN@*/.body/*@END_MENU_TOKEN@*/)
                             .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                    }
+                    HStack {
+                        Text("Color")
+                            Spacer()
+                            ColorPicker("", selection: $carColor)
                     }
                 }
                 
@@ -172,7 +178,7 @@ struct NewCarView: View {
         
             
             Button {
-                DataController.shared.addCar(brand: brand, model: carModel, energy: energy, milage:milage, modelYear:modelYear, tankCapacity:tankCapacity, horsepower:horsepower, engineSize:engineSize, nickname:nickname, image: imagePicker.uiImage, context:managedObjectContext)
+                DataController.shared.addCar(brand: brand, model: carModel, energy: energy, milage:milage, modelYear:modelYear, tankCapacity:tankCapacity, horsepower:horsepower, engineSize:engineSize, nickname:nickname, image: imagePicker.uiImage, color: DataController.shared.colorToString(color: carColor), context:managedObjectContext)
                 dismiss()
                 
             } label: {
