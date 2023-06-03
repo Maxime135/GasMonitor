@@ -134,11 +134,13 @@ class DataController: ObservableObject {
         expense.date = date
         
 //        car.fuelConsumption = (car.fuelConsumption*Float(car.milage)/100 + Float(expense.liters))/(Float(expense.traveledDistance)+Float(car.milage))
-        car.fuelConsumption += Float(expense.liters)/Float(expense.traveledDistance) * 100
+//        car.fuelConsumption += Float(expense.liters)/Float(expense.traveledDistance) * 100
         car.milage += traveledDistance
         
         
         car.addToExpenses(expense)
+        
+        car.fuelConsumption = calculateGasMilage(car: car)
         
         save(context: context)
 //        try! context.save()
@@ -157,19 +159,39 @@ class DataController: ObservableObject {
         expense.date = date
         
         //updating gas milage & car milage:
-        car!.fuelConsumption -= Float(previous_liters)/Float(previous_traveledDistance) * 100
-        car!.fuelConsumption += Float(expense.liters)/Float(expense.traveledDistance) * 100
+//        car!.fuelConsumption -= Float(previous_liters)/Float(previous_traveledDistance) * 100
+//        car!.fuelConsumption += Float(expense.liters)/Float(expense.traveledDistance) * 100
         car!.milage -= previous_traveledDistance
         car!.milage += traveledDistance
+        
+        car!.fuelConsumption = calculateGasMilage(car: car!)
         
         save(context: context)
 //        try! context.save()
     }
     
-//    func calculateGasMilage(car:Car) -> return Float {
-//        var gasMilage:Float = 0.0
-//        ForEach expense
-//    }
+    func calculateGasMilage(car:Car) -> Float {
+//        let expenses:Expense = car.expenses!
+        var gasMilage:Double = 0.0
+        var totalLiters:Double = 0.0
+        var totalDistance:Int64 = 0
+        
+//        ForEach(Array(car.expenses as? Set<Expense> ?? [])) { element in
+//            totalLiters += element.liters
+//            totalDistance += element.traveledDistance
+//        }
+//
+        for expense in Array(car.expenses as? Set<Expense> ?? []) {
+            totalLiters += expense.liters
+            totalDistance += expense.traveledDistance
+        }
+        
+        if totalDistance != 0 {
+            gasMilage = totalLiters / Double(totalDistance) * 100
+        }
+        
+        return(Float(gasMilage))
+    }
     
     
     func colorToString(color:Color) -> String {

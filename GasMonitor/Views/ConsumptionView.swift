@@ -13,7 +13,7 @@ struct ConsumptionView: View {
 //    @EnvironmentObject var model:CarModel
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(sortDescriptors:[SortDescriptor(\.brand)]) var car:FetchedResults<Car>
-    @FetchRequest(sortDescriptors:[SortDescriptor(\.date)]) var expense:FetchedResults<Expense>
+    @FetchRequest(sortDescriptors:[SortDescriptor(\.date, order: .reverse)]) var expense:FetchedResults<Expense>
 //    @State var place:String?
 
 
@@ -40,7 +40,7 @@ struct ConsumptionView: View {
                     ZStack {
                         Rectangle()
                             .frame(height: 75.0)
-                            .foregroundColor(/*@START_MENU_TOKEN@*/Color(hue: 0.384, saturation: 0.382, brightness: 0.643)/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(.green)
                             .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
 //                            .shadow(color: .gray, radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                         VStack {
@@ -62,7 +62,7 @@ struct ConsumptionView: View {
                     ZStack {
                         Rectangle()
                             .frame(height: 75.0)
-                            .foregroundColor(/*@START_MENU_TOKEN@*/Color(hue: 0.55, saturation: 0.492, brightness: 1.0)/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(.blue)
                             .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
 //                            .shadow(color: .gray, radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                         VStack {
@@ -89,6 +89,7 @@ struct ConsumptionView: View {
                     Chart {
                         ForEach(expense) { shape in
                                 BarMark(
+//                                    x: .value("Month", getMonthString(monthInt: shape.date!.get(.month))),
                                     x: .value("Month", getMonthString(monthInt: shape.date!.get(.month))),
                                     y: .value("€", shape.price)
                                 )
@@ -217,13 +218,13 @@ struct ConsumptionView: View {
     }
     
     func getMonthString(monthInt:Int) -> String {
-        let monthFirstLetter:[String] = ["J","F","M","A","M","J","J","A","S","O","N","D"]
+        let monthFirstLetter:[String] = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
         return monthFirstLetter[monthInt-1]
     }
     
     func getMonthString(date:Date) -> String {
         let month:String = ["January","February","March","April","May","June","July","August","September","October","November","December"][date.get(.month)-1]
-        let day:String = ["Mon","Tues", "Wed","Thr","Fri","Sat","Sun"][date.getDayNumberOfWeek()!]
+        let day:String = ["Sun","Mon","Tues","Wed","Thr","Fri","Sat"][date.getDayNumberOfWeek()!-1]
         return String(day+", "+String(date.get(.day))+" "+month)
     }
     
