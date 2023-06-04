@@ -15,7 +15,8 @@ struct ConsumptionView: View {
     @FetchRequest(sortDescriptors:[SortDescriptor(\.brand)]) var car:FetchedResults<Car>
     @FetchRequest(sortDescriptors:[SortDescriptor(\.date, order: .reverse)]) var expense:FetchedResults<Expense>
 //    @State var place:String?
-
+    
+    @State private var chartPeriodSelection = 1
 
     
     var body: some View {
@@ -28,11 +29,21 @@ struct ConsumptionView: View {
                         .fontWeight(.bold)
                     Spacer()
                 }
-                Text(getMonthString(date:Date()))
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.gray)
-                    .padding(.bottom)
+                
+                HStack {
+                    Text(getMonthString(date:Date()))
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(Color.gray)
+                        .padding(.bottom)
+                    Spacer()
+//                    Picker("Period", selection: $chartPeriodSelection ) {
+//                        Text("Month").tag(1)
+//                        Text("Year").tag(2)
+//                    }
+//                    .pickerStyle(.segmented)
+                }
+                
                 
                 // Month global overview
                 
@@ -86,32 +97,83 @@ struct ConsumptionView: View {
                 // Bar Chart
                 
                 HStack {
-                    Chart {
-                        ForEach(expense) { shape in
+                    if chartPeriodSelection == 1 {
+                        Chart {
+                            
+                            ForEach(expense) { shape in
+                                    BarMark(
+        //                                   x: .value("Month", getMonthString(monthInt: shape.date!.get(.month))),
+                                        x: .value("Month", getMonthString(monthInt: shape.date!.get(.month))),
+                                        y: .value("€", shape.price)
+                                    )
+                                    .foregroundStyle(by: .value("Car", shape.car!.model!))
+                                    .cornerRadius(5)
+        //                                .annotation(position: .overlay) {
+        //                                    Text(String(shape.car!.model!))
+        //                                        .foregroundColor(Color.white)
+        //                                        .font(.system(size: 12, weight: .bold))
+        //                                }
+                                    }
+                            
+//                                ForEach(expense) { shape in
+//                                        BarMark(
+//        //                                    x: .value("Month", getMonthString(monthInt: shape.date!.get(.month))),
+//                                            x: .value("Year", shape.date!.get(.year)),
+//                                            y: .value("€", shape.price)
+//                                        )
+//                                        .foregroundStyle(by: .value("Car", shape.car!.model!))
+//                                        .cornerRadius(5)
+//        //                                .annotation(position: .overlay) {
+//        //                                    Text(String(shape.car!.model!))
+//        //                                        .foregroundColor(Color.white)
+//        //                                        .font(.system(size: 12, weight: .bold))
+//        //                                }
+//                                    }
+                            
+                            
+                        }
+                        
+    //                    ForEach(car) { car in
+    //                            .chartForegroundStyleScale([car.model: DataController.shared.stringToColor(stringColor: car.color ?? "0.9800000786781311 0.8999999761581421 0.19999998807907104 1.0")])
+    //                    }
+    //                    .chartForegroundStyleScale([
+                        //                        "Green": .green, "Purple": .purple, "Pink": .pink, "Yellow": .yellow
+                        //                    ])
+                        .chartYAxisLabel {
+                            Text("€")
+                        }
+    //                    .chartYScale(domain: 2022...2024)
+                        .onTapGesture {
+                            chartPeriodSelection = 2
+                        }
+                    } else {
+                        Chart {
+                            ForEach(expense) { shape in
                                 BarMark(
-//                                    x: .value("Month", getMonthString(monthInt: shape.date!.get(.month))),
-                                    x: .value("Month", getMonthString(monthInt: shape.date!.get(.month))),
+                                    //                                    x: .value("Month", getMonthString(monthInt: shape.date!.get(.month))),
+                                    x: .value("Year", String(shape.date!.get(.year))),
                                     y: .value("€", shape.price)
-                                )
-                                .foregroundStyle(by: .value("Car", shape.car!.model!))
-                                .cornerRadius(5)
-//                                .annotation(position: .overlay) {
-//                                    Text(String(shape.car!.model!))
-//                                        .foregroundColor(Color.white)
-//                                        .font(.system(size: 12, weight: .bold))
-//                                }
+                                    )
+                                    .foregroundStyle(by: .value("Car", shape.car!.model!))
+                                    .cornerRadius(5)
+                                    //                                .annotation(position: .overlay) {
+                                    //                                    Text(String(shape.car!.model!))
+                                    //                                        .foregroundColor(Color.white)
+                                    //                                        .font(.system(size: 12, weight: .bold))
+                                    //                                }
                             }
+                        }
+                        .chartYAxisLabel {
+                            Text("€")
+                        }
+//                        .chartXScale(domain: 2022...2024)
+                        .onTapGesture {
+                            chartPeriodSelection = 1
+                        }
+                        
                     }
                     
-//                    ForEach(car) { car in
-//                            .chartForegroundStyleScale([car.model: DataController.shared.stringToColor(stringColor: car.color ?? "0.9800000786781311 0.8999999761581421 0.19999998807907104 1.0")])
-//                    }
-//                    .chartForegroundStyleScale([
-                    //                        "Green": .green, "Purple": .purple, "Pink": .pink, "Yellow": .yellow
-                    //                    ])
-                    .chartYAxisLabel {
-                        Text("€")
-                    }
+                    
                 }
                 .frame(height: 250.00)
                 
@@ -221,6 +283,7 @@ struct ConsumptionView: View {
         let monthFirstLetter:[String] = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
         return monthFirstLetter[monthInt-1]
     }
+    
     
     func getMonthString(date:Date) -> String {
         let month:String = ["January","February","March","April","May","June","July","August","September","October","November","December"][date.get(.month)-1]
