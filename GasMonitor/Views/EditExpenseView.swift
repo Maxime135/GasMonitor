@@ -33,22 +33,22 @@ struct EditExpenseView: View {
     
     var body: some View {
         VStack {
-            Map(coordinateRegion: $mapAPI.region, annotationItems: mapAPI.locations) { location in
-                MapMarker(coordinate: location.coordinate, tint: .red)
-            }
-            .frame(height: 200.0)
-            .onAppear {
-                selectedCar = expense.car
-                selectedFuel = expense.energy!
-                fuelPrice = expense.price
-                drivenDistance = expense.traveledDistance
-                fuelQuantity = expense.liters
-                place = expense.place
-                price = expense.price
-                adressText = expense.place ?? ""
-                date = expense.date ?? Date()
-                mapAPI.getLocation(address: adressText, delta: 0.005)
-            }
+//            Map(coordinateRegion: $mapAPI.region, annotationItems: mapAPI.locations) { location in
+//                MapMarker(coordinate: location.coordinate, tint: .red)
+//            }
+//            .frame(height: 200.0)
+//            .onAppear {
+//                selectedCar = expense.car
+//                selectedFuel = expense.energy!
+//                fuelPrice = expense.price
+//                drivenDistance = expense.traveledDistance
+//                fuelQuantity = expense.liters
+//                place = expense.place
+//                price = expense.price
+//                adressText = expense.place ?? ""
+//                date = expense.date ?? Date()
+//                mapAPI.getLocation(address: adressText, delta: 0.005)
+//            }
             
             Divider()
             
@@ -136,6 +136,25 @@ struct EditExpenseView: View {
                                 mapAPI.getLocation(address: adressText, delta: 0.005)
                             }
                             
+                    }
+                }
+                
+                Section {
+                    Map(coordinateRegion: $mapAPI.region, annotationItems: mapAPI.locations) { location in
+                        MapMarker(coordinate: location.coordinate, tint: .red)
+                    }
+                    .frame(height: 200.0)
+                    .onAppear {
+                        selectedCar = expense.car
+                        selectedFuel = expense.energy!
+                        fuelPrice = expense.price
+                        drivenDistance = expense.traveledDistance
+                        fuelQuantity = expense.liters
+                        place = expense.place
+                        price = expense.price
+                        adressText = expense.place ?? ""
+                        date = expense.date ?? Date()
+                        mapAPI.getLocation(address: adressText, delta: 0.005)
                     }
                 }
             }
