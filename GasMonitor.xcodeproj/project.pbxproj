@@ -22,6 +22,12 @@
 		73826A2C29C759C300F2DDB7 /* cars.json in Resources */ = {isa = PBXBuildFile; fileRef = 73826A2B29C759C300F2DDB7 /* cars.json */; };
 		73826A2E29C75C1100F2DDB7 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73826A2D29C75C1100F2DDB7 /* DataService.swift */; };
 		73826A3129C7603900F2DDB7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73826A3029C7603900F2DDB7 /* MainView.swift */; };
+		73AF10262A3E338200E5A967 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73AF10252A3E338200E5A967 /* WidgetKit.framework */; };
+		73AF10282A3E338200E5A967 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73AF10272A3E338200E5A967 /* SwiftUI.framework */; };
+		73AF102B2A3E338200E5A967 /* MonthlyConsumptionWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AF102A2A3E338200E5A967 /* MonthlyConsumptionWidgetBundle.swift */; };
+		73AF102D2A3E338200E5A967 /* MonthlyConsumptionWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AF102C2A3E338200E5A967 /* MonthlyConsumptionWidget.swift */; };
+		73AF102F2A3E338300E5A967 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73AF102E2A3E338300E5A967 /* Assets.xcassets */; };
+		73AF10332A3E338300E5A967 /* MonthlyConsumptionWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 73AF10232A3E338200E5A967 /* MonthlyConsumptionWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		73B3808C29C7633F00A50DE3 /* FleetListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B3808B29C7633F00A50DE3 /* FleetListView.swift */; };
 		73B3808E29C7635000A50DE3 /* ConsumptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B3808D29C7635000A50DE3 /* ConsumptionView.swift */; };
 		73B3809029C7646A00A50DE3 /* CarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B3808F29C7646A00A50DE3 /* CarModel.swift */; };
@@ -30,6 +36,30 @@
 		73C9761C2A24B3B70072FA24 /* FileManager + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C9761B2A24B3B70072FA24 /* FileManager + Extension.swift */; };
 		73FF53BB29CF63F3000871B1 /* NewCarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FF53BA29CF63F3000871B1 /* NewCarView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		73AF10312A3E338300E5A967 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73826A0829C7534800F2DDB7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 73AF10222A3E338200E5A967;
+			remoteInfo = MonthlyConsumptionWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		73AF10342A3E338300E5A967 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				73AF10332A3E338300E5A967 /* MonthlyConsumptionWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		73083B282A238F5900AC5D2D /* CarModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CarModel.xcdatamodel; sourceTree = "<group>"; };
@@ -50,6 +80,13 @@
 		73826A2B29C759C300F2DDB7 /* cars.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cars.json; sourceTree = "<group>"; };
 		73826A2D29C75C1100F2DDB7 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		73826A3029C7603900F2DDB7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		73AF10232A3E338200E5A967 /* MonthlyConsumptionWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MonthlyConsumptionWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		73AF10252A3E338200E5A967 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		73AF10272A3E338200E5A967 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		73AF102A2A3E338200E5A967 /* MonthlyConsumptionWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyConsumptionWidgetBundle.swift; sourceTree = "<group>"; };
+		73AF102C2A3E338200E5A967 /* MonthlyConsumptionWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyConsumptionWidget.swift; sourceTree = "<group>"; };
+		73AF102E2A3E338300E5A967 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		73AF10302A3E338300E5A967 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73B3808B29C7633F00A50DE3 /* FleetListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetListView.swift; sourceTree = "<group>"; };
 		73B3808D29C7635000A50DE3 /* ConsumptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumptionView.swift; sourceTree = "<group>"; };
 		73B3808F29C7646A00A50DE3 /* CarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
@@ -64,6 +101,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73AF10202A3E338200E5A967 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73AF10282A3E338200E5A967 /* SwiftUI.framework in Frameworks */,
+				73AF10262A3E338200E5A967 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				73826A1229C7534800F2DDB7 /* GasMonitor */,
+				73AF10292A3E338200E5A967 /* MonthlyConsumptionWidget */,
+				73AF10242A3E338200E5A967 /* Frameworks */,
 				73826A1129C7534800F2DDB7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -95,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				73826A1029C7534800F2DDB7 /* GasMonitor.app */,
+				73AF10232A3E338200E5A967 /* MonthlyConsumptionWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,6 +230,26 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		73AF10242A3E338200E5A967 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				73AF10252A3E338200E5A967 /* WidgetKit.framework */,
+				73AF10272A3E338200E5A967 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		73AF10292A3E338200E5A967 /* MonthlyConsumptionWidget */ = {
+			isa = PBXGroup;
+			children = (
+				73AF102A2A3E338200E5A967 /* MonthlyConsumptionWidgetBundle.swift */,
+				73AF102C2A3E338200E5A967 /* MonthlyConsumptionWidget.swift */,
+				73AF102E2A3E338300E5A967 /* Assets.xcassets */,
+				73AF10302A3E338300E5A967 /* Info.plist */,
+			);
+			path = MonthlyConsumptionWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -191,15 +260,34 @@
 				73826A0C29C7534800F2DDB7 /* Sources */,
 				73826A0D29C7534800F2DDB7 /* Frameworks */,
 				73826A0E29C7534800F2DDB7 /* Resources */,
+				73AF10342A3E338300E5A967 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				73AF10322A3E338300E5A967 /* PBXTargetDependency */,
 			);
 			name = GasMonitor;
 			productName = GasMonitor;
 			productReference = 73826A1029C7534800F2DDB7 /* GasMonitor.app */;
 			productType = "com.apple.product-type.application";
+		};
+		73AF10222A3E338200E5A967 /* MonthlyConsumptionWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73AF10372A3E338300E5A967 /* Build configuration list for PBXNativeTarget "MonthlyConsumptionWidgetExtension" */;
+			buildPhases = (
+				73AF101F2A3E338200E5A967 /* Sources */,
+				73AF10202A3E338200E5A967 /* Frameworks */,
+				73AF10212A3E338200E5A967 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MonthlyConsumptionWidgetExtension;
+			productName = MonthlyConsumptionWidgetExtension;
+			productReference = 73AF10232A3E338200E5A967 /* MonthlyConsumptionWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -208,11 +296,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					73826A0F29C7534800F2DDB7 = {
 						CreatedOnToolsVersion = 14.2;
+					};
+					73AF10222A3E338200E5A967 = {
+						CreatedOnToolsVersion = 14.3;
 					};
 				};
 			};
@@ -230,6 +321,7 @@
 			projectRoot = "";
 			targets = (
 				73826A0F29C7534800F2DDB7 /* GasMonitor */,
+				73AF10222A3E338200E5A967 /* MonthlyConsumptionWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -242,6 +334,14 @@
 				73826A1C29C7534A00F2DDB7 /* Preview Assets.xcassets in Resources */,
 				73826A2C29C759C300F2DDB7 /* cars.json in Resources */,
 				73826A1829C7534A00F2DDB7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73AF10212A3E338200E5A967 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73AF102F2A3E338300E5A967 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +374,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		73AF101F2A3E338200E5A967 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73AF102B2A3E338200E5A967 /* MonthlyConsumptionWidgetBundle.swift in Sources */,
+				73AF102D2A3E338200E5A967 /* MonthlyConsumptionWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		73AF10322A3E338300E5A967 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 73AF10222A3E338200E5A967 /* MonthlyConsumptionWidgetExtension */;
+			targetProxy = 73AF10312A3E338300E5A967 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		73826A1D29C7534A00F2DDB7 /* Debug */ = {
@@ -389,6 +506,7 @@
 		73826A2029C7534A00F2DDB7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GasMonitor/GasMonitor.entitlements;
@@ -432,6 +550,7 @@
 		73826A2129C7534A00F2DDB7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GasMonitor/GasMonitor.entitlements;
@@ -472,6 +591,65 @@
 			};
 			name = Release;
 		};
+		73AF10352A3E338300E5A967 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7YYBHQDSC4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MonthlyConsumptionWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MonthlyConsumptionWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Maxime-Boulanger.GasMonitor.MonthlyConsumptionWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		73AF10362A3E338300E5A967 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7YYBHQDSC4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MonthlyConsumptionWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MonthlyConsumptionWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Maxime-Boulanger.GasMonitor.MonthlyConsumptionWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -489,6 +667,15 @@
 			buildConfigurations = (
 				73826A2029C7534A00F2DDB7 /* Debug */,
 				73826A2129C7534A00F2DDB7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73AF10372A3E338300E5A967 /* Build configuration list for PBXNativeTarget "MonthlyConsumptionWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73AF10352A3E338300E5A967 /* Debug */,
+				73AF10362A3E338300E5A967 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
