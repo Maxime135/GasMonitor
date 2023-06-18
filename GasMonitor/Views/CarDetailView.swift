@@ -81,7 +81,7 @@ struct CarDetailView: View {
                         HStack {
                             Text("Fuel Consumption (L/100km) :")
                             Spacer()
-                            Text(String(car.fuelConsumption ?? 0))
+                            Text(String(format:"%.2f", car.fuelConsumption ?? 0))
                                 .foregroundColor(.red)
                         }
                         HStack {

@@ -10,12 +10,17 @@ import SwiftUI
 import Charts
 
 struct Provider: TimelineProvider {
+    
+//    @Environment(\.managedObjectContext) var managedObjectContext
+//    @FetchRequest(sortDescriptors:[SortDescriptor(\.brand)]) var car:FetchedResults<Car>
+    
+    
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date())
+        SimpleEntry(date: Date(), fuelConsumtpion: Float(6.9), carMilage: 31200)
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date())
+        let entry = SimpleEntry(date: Date(), fuelConsumtpion: Float(6.9), carMilage: 31200)
         completion(entry)
     }
 
@@ -24,22 +29,45 @@ struct Provider: TimelineProvider {
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate)
-            entries.append(entry)
-        }
+        let cars = try! getData()
+        let carFuelConsumption = cars.first?.fuelConsumption ?? 0.0
+        let carMilage:Int64 = cars.first?.milage ?? 0
+//        let selectedCar = car.first
+//        let carFuelConsumption = car.first?.fuelConsumption ?? 0.0
+//        for hourOffset in 0 ..< 5 {
+//            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+//            let entry = SimpleEntry(date: entryDate, fuelConsumtpion: Float(6.9))
+//            entries.append(entry)
+//        }
+        
+        let entry = SimpleEntry(date: currentDate, fuelConsumtpion: carFuelConsumption, carMilage: carMilage)
+        entries.append(entry)
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
+    }
+    
+    private func getData() throws -> [Car] {
+        let context = DataController.shared.container.viewContext
+        
+        let request = Car.fetchRequest()
+        let result = try context.fetch(request)
+        
+        print("succeded getting car data")
+        
+        return result
     }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
+    let fuelConsumtpion: Float
+    let carMilage:Int64
 }
 
 struct MonthlyConsumptionWidgetEntryView : View {
+    
+    
     
     var entry: Provider.Entry
     
@@ -68,10 +96,10 @@ struct MonthlyConsumptionWidgetEntryView : View {
 //                .foregroundStyle(.purple)
 //                .clipShape(RoundedRectangle(cornerRadius: 10))
                 PointMark(
-                    x: .value("Current", 7),
+                    x: .value("Current", entry.fuelConsumtpion),
                     y: .value("Current", 0)
                 )
-                .foregroundStyle(Color.white)
+                .foregroundStyle(Color.blue)
                 
             }
                 
@@ -89,7 +117,7 @@ struct MonthlyConsumptionWidgetEntryView : View {
 //                .cornerRadius(10)
             HStack {
                 Spacer()
-                Text("7.5")
+                Text(String(format: "%.1f", entry.fuelConsumtpion))
                     .fontWeight(.bold)
                     .foregroundColor(Color(hue: 0.579, saturation: 0.859, brightness: 0.997))
                 Text("L/100km")
@@ -102,9 +130,9 @@ struct MonthlyConsumptionWidgetEntryView : View {
             
             HStack(alignment: .bottom) {
                 Spacer()
-                Text("124")
+                Text(String(entry.carMilage))
                     .fontWeight(.bold)
-                    .foregroundColor(Color(hue: 0.579, saturation: 0.859, brightness: 0.997))
+                    .foregroundColor(Color.green)
                 
                 Text("km")
                     .fontWeight(.light)
@@ -154,7 +182,9 @@ extension Date {
 
 struct MonthlyConsumptionWidget_Previews: PreviewProvider {
     static var previews: some View {
-        MonthlyConsumptionWidgetEntryView(entry: SimpleEntry(date: Date()))
+        MonthlyConsumptionWidgetEntryView(entry: SimpleEntry(date: Date(), fuelConsumtpion: Float(6.9), carMilage: 31200))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
+
+
