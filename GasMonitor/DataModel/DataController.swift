@@ -16,6 +16,16 @@ class DataController: ObservableObject {
     static let shared = DataController()
     
     init() {
+        
+        let url = URL.storeURL(for: "group.GasMonitorGroup", databaseName: "CarModel")
+        let storeDescription = NSPersistentStoreDescription(url: url)
+        container.persistentStoreDescriptions = [storeDescription]
+        container.loadPersistentStores { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        }
+        
         container.loadPersistentStores { desc, error in
             if let error = error {
                 print("Failed to load the data \(error.localizedDescription)")
@@ -94,12 +104,12 @@ class DataController: ObservableObject {
 //        var distance:Float = 0.0
 //        var liters:Float = 0.0
 //        let expenses = car.expenses!
-//        
+//
 //        for expense in expenses {
 //            distance += Float(expense.traveledDistance)
 //            liters += Float(expense.liters)
 //        }
-//        
+//
 //        car.fuelConsumption = distance/liters
 //    }
     
@@ -208,4 +218,14 @@ class DataController: ObservableObject {
         return Color(.sRGB, red: red!, green: green!, blue: blue!)
     }
 
+}
+
+
+public extension URL {
+    static func storeURL(for appGroup:String, databaseName:String) -> URL {
+        guard let fileContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
+            fatalError("Unable to create URL for \(appGroup)")
+        }
+        return fileContainer.appendingPathComponent("\(databaseName).sqlite")
+    }
 }

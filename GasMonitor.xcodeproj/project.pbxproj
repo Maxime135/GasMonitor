@@ -14,6 +14,9 @@
 		73083B322A23EBED00AC5D2D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73083B312A23EBED00AC5D2D /* ImagePicker.swift */; };
 		7331ECA12A17C10D00BC3903 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7331ECA02A17C10D00BC3903 /* DataController.swift */; };
 		7331ECA72A19664B00BC3903 /* EditExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7331ECA62A19664B00BC3903 /* EditExpenseView.swift */; };
+		73334DD02A3F5207007101B7 /* CarModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73083B272A238F5900AC5D2D /* CarModel.xcdatamodeld */; };
+		73334DD12A3F520A007101B7 /* FileManager + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C9761B2A24B3B70072FA24 /* FileManager + Extension.swift */; };
+		73334DD22A3F520D007101B7 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7331ECA02A17C10D00BC3903 /* DataController.swift */; };
 		73411BAE29C7A13C00A804C3 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73411BAD29C7A13C00A804C3 /* AddExpenseView.swift */; };
 		73826A1429C7534800F2DDB7 /* GasMonitorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73826A1329C7534800F2DDB7 /* GasMonitorApp.swift */; };
 		73826A1829C7534A00F2DDB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73826A1729C7534A00F2DDB7 /* Assets.xcassets */; };
@@ -70,6 +73,7 @@
 		73083B312A23EBED00AC5D2D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7331ECA02A17C10D00BC3903 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		7331ECA62A19664B00BC3903 /* EditExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseView.swift; sourceTree = "<group>"; usesTabs = 0; };
+		73334DD32A3F52FD007101B7 /* MonthlyConsumptionWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MonthlyConsumptionWidgetExtension.entitlements; sourceTree = "<group>"; };
 		73411BAD29C7A13C00A804C3 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
 		73826A1029C7534800F2DDB7 /* GasMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GasMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73826A1329C7534800F2DDB7 /* GasMonitorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasMonitorApp.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 		73826A0729C7534800F2DDB7 = {
 			isa = PBXGroup;
 			children = (
+				73334DD32A3F52FD007101B7 /* MonthlyConsumptionWidgetExtension.entitlements */,
 				73826A1229C7534800F2DDB7 /* GasMonitor */,
 				73AF10292A3E338200E5A967 /* MonthlyConsumptionWidget */,
 				73AF10242A3E338200E5A967 /* Frameworks */,
@@ -378,8 +383,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73334DD22A3F520D007101B7 /* DataController.swift in Sources */,
+				73334DD02A3F5207007101B7 /* CarModel.xcdatamodeld in Sources */,
 				73AF102B2A3E338200E5A967 /* MonthlyConsumptionWidgetBundle.swift in Sources */,
 				73AF102D2A3E338200E5A967 /* MonthlyConsumptionWidget.swift in Sources */,
+				73334DD12A3F520A007101B7 /* FileManager + Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +604,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = MonthlyConsumptionWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7YYBHQDSC4;
@@ -625,6 +634,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = MonthlyConsumptionWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7YYBHQDSC4;
