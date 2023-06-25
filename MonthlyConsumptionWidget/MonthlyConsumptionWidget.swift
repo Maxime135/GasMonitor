@@ -8,23 +8,20 @@
 import WidgetKit
 import SwiftUI
 import Charts
+import Intents
 
-struct Provider: TimelineProvider {
-    
-//    @Environment(\.managedObjectContext) var managedObjectContext
-//    @FetchRequest(sortDescriptors:[SortDescriptor(\.brand)]) var car:FetchedResults<Car>
-    
+struct Provider: IntentTimelineProvider {
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), fuelConsumtpion: Float(6.9), carMilage: 31200)
+        SimpleEntry(date: Date(), fuelConsumtpion: Float(6.9), carMilage: 31200, configuration: GasMonitorWidgetIntentIntent())
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), fuelConsumtpion: Float(6.9), carMilage: 31200)
+    func getSnapshot(for configuration:GasMonitorWidgetIntentIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+        let entry = SimpleEntry(date: Date(), fuelConsumtpion: Float(6.9), carMilage: 31200, configuration: configuration)
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(for configuration:GasMonitorWidgetIntentIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
@@ -40,7 +37,7 @@ struct Provider: TimelineProvider {
 //            entries.append(entry)
 //        }
         
-        let entry = SimpleEntry(date: currentDate, fuelConsumtpion: carFuelConsumption, carMilage: carMilage)
+        let entry = SimpleEntry(date: currentDate, fuelConsumtpion: carFuelConsumption, carMilage: carMilage, configuration: GasMonitorWidgetIntentIntent())
         entries.append(entry)
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
@@ -63,6 +60,7 @@ struct SimpleEntry: TimelineEntry {
     let date: Date
     let fuelConsumtpion: Float
     let carMilage:Int64
+    let configuration: GasMonitorWidgetIntentIntent
 }
 
 struct MonthlyConsumptionWidgetEntryView : View {
@@ -139,6 +137,8 @@ struct MonthlyConsumptionWidgetEntryView : View {
                     .foregroundColor(Color.gray)
             }
             
+            Text(entry.configuration.selectedCar?.fuelConsumption ?? "0")
+            
             Spacer()
         }
         .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
@@ -151,14 +151,15 @@ struct MonthlyConsumptionWidget: Widget {
     let kind: String = "MonthlyConsumptionWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            MonthlyConsumptionWidgetEntryView(entry: entry)
-        }
-//        IntentConfiguration(kind: kind, intent:GasMonitorWidgetIntent.self, provider: Provider()) { entry in
+//        StaticConfiguration(kind: kind, provider: Provider()) { entry in
 //            MonthlyConsumptionWidgetEntryView(entry: entry)
 //        }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        
+        IntentConfiguration(kind: kind, intent:GasMonitorWidgetIntentIntent.self, provider: Provider()) { entry in
+            MonthlyConsumptionWidgetEntryView(entry: entry)
+        }
+        .configurationDisplayName("Gas Monitor Widget")
+        .description("Monitor your car gas milage.")
         .supportedFamilies([.systemSmall])
     }
 }
@@ -185,7 +186,7 @@ extension Date {
 
 struct MonthlyConsumptionWidget_Previews: PreviewProvider {
     static var previews: some View {
-        MonthlyConsumptionWidgetEntryView(entry: SimpleEntry(date: Date(), fuelConsumtpion: Float(6.9), carMilage: 31200))
+        MonthlyConsumptionWidgetEntryView(entry: SimpleEntry(date: Date(), fuelConsumtpion: Float(6.9), carMilage: 31200, configuration: GasMonitorWidgetIntentIntent()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
