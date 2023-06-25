@@ -8,6 +8,8 @@
 		<true/>
 	</dict>
 	<key>NSUserActivityTypes</key>
-	<array/>
+	<array>
+		<string>GasMonitorWidgetIntentIntent</string>
+	</array>
 </dict>
 </plist>

@@ -154,6 +154,9 @@ struct MonthlyConsumptionWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             MonthlyConsumptionWidgetEntryView(entry: entry)
         }
+//        IntentConfiguration(kind: kind, intent:GasMonitorWidgetIntent.self, provider: Provider()) { entry in
+//            MonthlyConsumptionWidgetEntryView(entry: entry)
+//        }
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
         .supportedFamilies([.systemSmall])
