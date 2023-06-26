@@ -30,7 +30,7 @@ class IntentHandler: INExtension, GasMonitorWidgetIntentIntentHandling, INSendMe
         // Transform those cars into the desired ([Vehicle]) list
         let vehicles = cars.map { car in
             
-            let vehicle = Vehicle(identifier: "\(car.id)", display: car.model!)
+            let vehicle = Vehicle(identifier: car.id!.description , display: car.model!)
             vehicle.milage = "\(car.milage)"
             vehicle.fuelConsumption = "\(car.fuelConsumption)"
             
@@ -60,6 +60,8 @@ class IntentHandler: INExtension, GasMonitorWidgetIntentIntentHandling, INSendMe
         
         return self
     }
+    
+    
     
     // MARK: - INSendMessageIntentHandling
     

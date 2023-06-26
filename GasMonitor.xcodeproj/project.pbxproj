@@ -17,6 +17,9 @@
 		73334DD02A3F5207007101B7 /* CarModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 73083B272A238F5900AC5D2D /* CarModel.xcdatamodeld */; };
 		73334DD22A3F520D007101B7 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7331ECA02A17C10D00BC3903 /* DataController.swift */; };
 		73411BAE29C7A13C00A804C3 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73411BAD29C7A13C00A804C3 /* AddExpenseView.swift */; };
+		736BA3772A4A03D5008D615E /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CCEA762A489D6C00FE0753 /* IntentHandler.swift */; };
+		736BA3782A4A05D1008D615E /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 737F2F7D2A4899E500D3DE67 /* Intents.intentdefinition */; };
+		736BA3792A4A05D4008D615E /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CCEA762A489D6C00FE0753 /* IntentHandler.swift */; };
 		737F2F7E2A4899E500D3DE67 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 737F2F7D2A4899E500D3DE67 /* Intents.intentdefinition */; };
 		737F2F7F2A4899E500D3DE67 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 737F2F7D2A4899E500D3DE67 /* Intents.intentdefinition */; };
 		73826A1429C7534800F2DDB7 /* GasMonitorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73826A1329C7534800F2DDB7 /* GasMonitorApp.swift */; };
@@ -502,6 +505,7 @@
 				73083B2C2A23A00000AC5D2D /* MapModel.swift in Sources */,
 				73411BAE29C7A13C00A804C3 /* AddExpenseView.swift in Sources */,
 				73083B322A23EBED00AC5D2D /* ImagePicker.swift in Sources */,
+				736BA3792A4A05D4008D615E /* IntentHandler.swift in Sources */,
 				73826A1429C7534800F2DDB7 /* GasMonitorApp.swift in Sources */,
 				73C672D129D8AA6E0049A82B /* editCarView.swift in Sources */,
 				73FF53BB29CF63F3000871B1 /* NewCarView.swift in Sources */,
@@ -529,6 +533,7 @@
 				73334DD22A3F520D007101B7 /* DataController.swift in Sources */,
 				73334DD02A3F5207007101B7 /* CarModel.xcdatamodeld in Sources */,
 				73CCEA9A2A48AE0500FE0753 /* FileManager + Extension.swift in Sources */,
+				736BA3772A4A03D5008D615E /* IntentHandler.swift in Sources */,
 				73AF102B2A3E338200E5A967 /* MonthlyConsumptionWidgetBundle.swift in Sources */,
 				73AF102D2A3E338200E5A967 /* MonthlyConsumptionWidget.swift in Sources */,
 			);
@@ -551,6 +556,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				736BA3782A4A05D1008D615E /* Intents.intentdefinition in Sources */,
 				73CCEA822A489D6C00FE0753 /* IntentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
